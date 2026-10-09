@@ -6,7 +6,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================================================
-   PRASM Foundation — Design System
+   PRASM Project — Design System
    Single source of truth for color, type, spacing, radius, shadow tokens.
    Tailwind v4 CSS-first config: tokens below generate utilities
    (e.g. --color-clay-500 -> bg-clay-500 / text-clay-500).

@@ -53,7 +53,7 @@ type Tab =
 type Invite = { name: string; email: string; role: Role };
 
 const tabs: { id: Tab; label: string; icon: React.ElementType; blurb: string }[] = [
-  { id: "overview", label: "Overview", icon: LayoutDashboard, blurb: "One place to run the foundation: roles decide who can do what, money is tracked and signed off, and AI drafts the busywork while a person approves." },
+  { id: "overview", label: "Overview", icon: LayoutDashboard, blurb: "One place to run the project: roles decide who can do what, money is tracked and signed off, and AI drafts the busywork while a person approves." },
   { id: "people", label: "People", icon: Users, blurb: "Your team and their roles. Invite a member and they get a link to set a password and start capturing from the field." },
   { id: "finance", label: "Finance", icon: Banknote, blurb: "Every expense, with its category and sign-off. Use of funds rolls up from here, and a receipt backs each one." },
   { id: "approvals", label: "Approvals", icon: ClipboardCheck, blurb: "Items waiting for a second person to sign off. Above a threshold, the approver cannot be the person who spent the money." },

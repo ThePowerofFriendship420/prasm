@@ -32,7 +32,7 @@ function resolveSiteUrl(): string {
 }
 
 export const site = {
-  name: "PRASM Foundation",
+  name: "PRASM Project",
   shortName: "PRASM",
   // TODO[user]: confirm what "PRASM" stands for + final tagline.
   tagline: "Dignity, identity, and care for the stateless.",

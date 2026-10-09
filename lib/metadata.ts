@@ -5,7 +5,7 @@ const baseUrl = site.url;
 
 /**
  * Build per-page metadata with sensible PRASM defaults + OpenGraph/Twitter.
- * The root layout sets the title template ("%s · PRASM Foundation").
+ * The root layout sets the title template ("%s · PRASM Project").
  */
 export function buildMetadata({
   title,
