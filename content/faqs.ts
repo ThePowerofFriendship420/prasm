@@ -39,7 +39,7 @@ export const generalFaqs: Faq[] = [
   },
   {
     q: "Is PRASM a registered charity?",
-    a: "Not yet. PRASM is an emerging, community-focused initiative still formalizing its legal structure. We say so plainly on our Transparency page, and we don't claim charity registration, tax-deductibility, or audited financials until they're real.",
+    a: "Not yet. PRASM is an emerging, community-focused initiative still formalizing its legal structure, and plans to register as a foundation. We say so plainly on our Transparency page, and we don't claim charity registration, tax-deductibility, or audited financials until they're real.",
   },
   {
     q: "Are donations tax-deductible?",

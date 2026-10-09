@@ -112,7 +112,7 @@ export default function HomePage() {
           >
             identity, digital records, and AI-assisted care
           </Link>
-          : the reason PRASM exists as a foundation.
+          : the reason PRASM exists.
         </p>
       </Section>
 
