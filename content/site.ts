@@ -46,8 +46,9 @@ export const site = {
     region: "Mae Hong Son",
     country: "Thailand",
   },
-  // TODO[user]: confirm founding year.
-  foundedYear: 2024,
+  // Confirmed by the founder: PRASM began in 2018 as the PRASM Network
+  // bioinformation project (see docs/origins.md); the refugee work grew out of it.
+  foundedYear: 2018,
 } as const;
 
 export type Site = typeof site;

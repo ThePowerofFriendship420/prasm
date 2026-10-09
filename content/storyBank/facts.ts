@@ -90,9 +90,9 @@ export const facts: Fact[] = [
   {
     id: "founded-year",
     claim: `PRASM traces its beginning to ${site.foundedYear}.`,
-    status: "unverified",
-    source: "content/site.ts",
-    note: "Founding year is a TODO in content/site.ts. Confirm before stating.",
+    status: "verified",
+    source: "content/site.ts · docs/origins.md",
+    note: "Confirmed by the founder: 2018, when the PRASM Network bioinformation project began. The refugee work in Mae Hong Son came later.",
   },
   ...statFacts,
 ];
