@@ -48,7 +48,7 @@ export const whereSupportGoes: { label: string; body: string }[] = [
 export const leadership = {
   title: "Leadership & governance",
   body: [
-    "PRASM is led by its founder, Dr. Kwon Yonghyun (권용현), MD — a Korean physician whose visits to the village began this work, and who now lives and practises in Thailand. He is supported by a small circle of volunteers and the families themselves.",
+    "PRASM is led by its founder, Dr. Kwon Yonghyun (권용현), MD — a Korean physician whose visits to the village began this work, and who now lives in Thailand, teaching and counselling online. He is supported by a small circle of volunteers and the families themselves.",
     "He chairs the Korea Cannabinoid Association and has chaired the Korea Aromatherapy Association since 2014; his own practice, MahKha, funds part of what happens here. His full record, including a plain note on which parts of it are not yet independently verifiable, is published at mahkha.com.",
     "There is no board yet, and no advisors — one person and volunteers is the whole of it. As we formalize we intend to add named leadership, advisors, and basic governance, and to publish them here. We'd rather introduce real, accountable people than hide behind a logo. If you'd like to know who you're talking to, just ask.",
   ],
