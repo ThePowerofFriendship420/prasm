@@ -1,4 +1,4 @@
-# PRASM as an AI-Native Foundation
+# PRASM as an AI-Native Project
 
 > **What this is.** The working blueprint for how PRASM operates: a tiny human
 > team amplified by AI, so that almost everything — money, time, attention —
@@ -27,7 +27,7 @@ small normally drowns in back-office work — writing updates, chasing grants,
 thanking donors, keeping records, remembering what worked. That work is real,
 and every hour of it is an hour not spent in the village.
 
-An AI-native foundation inverts that ratio.
+An AI-native project inverts that ratio.
 
 > **The story is human. The engine room is AI.**
 > Donors meet the doctor and the families — never a bot. AI is simply how two
@@ -135,12 +135,18 @@ Each entry: **what · why here · the loop · what it needs · risks · stage.**
   drafter for recurring donors + newsletter
   ([`scripts/supporter-update/`](../scripts/supporter-update))._
 
-### 3.4 Identity & Case Registry
+### 3.4 Identity & Case Registry — Medical Record → Identity
 
 - **What.** The mission, made structured. Helping stateless people prove who
   they are is, underneath, a records problem: organized case files, family
   links, histories, and drafted documents (timelines, affidavits). AI organizes
   and drafts; people decide.
+- **Where it comes from.** PRASM began as a bioinformation project (the 2018
+  whitepaper), and that is still the core. The registry grows _out of_ clinical
+  care: getting someone with no ID to a hospital creates a medical record, and
+  that record — owned by the person, with clear provenance — becomes their
+  identity. Not a separate database bolted on. Full statement and safety rules
+  in [`origins.md`](origins.md).
 - **Why here.** This is literally _"help them prove who they are."_ A clean
   registry compounds — it's leverage for every future medical, legal, or
   advocacy step. It's also the most **visionary** thread, and the README already
@@ -377,6 +383,10 @@ My lean is listed first where I have one.
 
 ## Changelog
 
+- **v0.10** · October 2026 · added [`origins.md`](origins.md): the 2018
+  PRASM Network whitepaper as the project's origin, and the founder's
+  direction — bioinformation is the core; medical records made while getting
+  undocumented people to care become their identity. Reframed §3.4 to match.
 - **v0.9** · June 2026 · added the Curiosity Program thread (§3.8): education and
   AI literacy as the safe on-ramp to the registry, with a full proposal
   (`curiosity-program.md`), a pilot rollout pack

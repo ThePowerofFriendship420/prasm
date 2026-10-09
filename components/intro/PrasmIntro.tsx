@@ -1,6 +1,6 @@
 "use client";
 
-// PRASM Foundation — a calm, caring animated introduction (~95s, 8 beats).
+// PRASM Project — a calm, caring animated introduction (~95s, 8 beats).
 // Ported from the Claude Design handoff (project/scenes.jsx) into the site's
 // current brand: Thai-tea-orange clay, forest/sand/cream, gold accent, and the
 // site fonts (Fraunces / Inter / Montserrat via CSS variables).
@@ -366,7 +366,7 @@ function TitleScene({ local }: { local: number }) {
             ...rise(local, 1.3, 0.9, 14),
           }}
         >
-          Foundation
+          Project
         </div>
 
         <div
@@ -1287,7 +1287,7 @@ function CloseScene({ local }: { local: number }) {
                 marginLeft: 22,
               }}
             >
-              Foundation
+              Project
             </span>
           </div>
           <div

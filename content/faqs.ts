@@ -35,11 +35,11 @@ export const generalFaqs: Faq[] = [
   },
   {
     q: "Who are the Kayan?",
-    a: "The Kayan are a people from Kayah State in Myanmar. “Karenni” is an English translation sometimes used for the same community. The name they use for themselves is Kayan. Many fled the conflict in Myanmar and now live as refugees along the Thai border.",
+    a: "The Kayan are a people from Kayah State in Myanmar, one of the Karenni peoples. Karenni is the wider family of groups in Kayah State; it is related to, but distinct from, the Karen. The name they use for themselves is Kayan. Many fled the conflict in Myanmar and now live as refugees along the Thai border.",
   },
   {
     q: "Is PRASM a registered charity?",
-    a: "Not yet. PRASM is an emerging, community-focused initiative still formalizing its legal structure. We say so plainly on our Transparency page, and we don't claim charity registration, tax-deductibility, or audited financials until they're real.",
+    a: "Not yet. PRASM is an emerging, community-focused initiative still formalizing its legal structure, and plans to register as a foundation. We say so plainly on our Transparency page, and we don't claim charity registration, tax-deductibility, or audited financials until they're real.",
   },
   {
     q: "Are donations tax-deductible?",

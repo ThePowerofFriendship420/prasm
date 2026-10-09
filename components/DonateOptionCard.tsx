@@ -148,7 +148,7 @@ export function DonateCryptoCard({
               />
             )}
             <p className="text-sm text-stone">
-              Give {label} directly to the foundation. The wallet address opens at
+              Give {label} directly to PRASM. The wallet address opens at
               launch; transfers are irreversible, so always verify it first.
             </p>
           </div>
