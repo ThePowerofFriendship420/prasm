@@ -12,6 +12,9 @@ and medical-records programs.
 > **The longer game:** how those future phases fit together — a tiny team
 > amplified by AI, with the people always the face and AI in the engine room —
 > is sketched in [`docs/concept.md`](docs/concept.md).
+>
+> Where the idea comes from — the 2018 PRASM bioinformation whitepaper, and
+> why medical records become identity — is in [`docs/origins.md`](docs/origins.md).
 
 ## Tech stack
 
