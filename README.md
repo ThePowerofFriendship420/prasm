@@ -1,6 +1,6 @@
-# PRASM Foundation
+# PRASM Project
 
-The website for **PRASM**, a foundation supporting Kayan refugees from
+The website for **PRASM**, a project supporting Kayan refugees from
 Myanmar living off-grid in Mae Hong Son, Thailand — telling their story with
 dignity, making it easy to give, and laying the groundwork for future identity
 and medical-records programs.
@@ -12,6 +12,9 @@ and medical-records programs.
 > **The longer game:** how those future phases fit together — a tiny team
 > amplified by AI, with the people always the face and AI in the engine room —
 > is sketched in [`docs/concept.md`](docs/concept.md).
+>
+> Where the idea comes from — the 2018 PRASM bioinformation whitepaper, and
+> why medical records become identity — is in [`docs/origins.md`](docs/origins.md).
 
 ## Tech stack
 

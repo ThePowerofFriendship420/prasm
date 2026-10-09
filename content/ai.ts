@@ -93,7 +93,7 @@ export const aiBuilt: { title: string; body: string }[] = [
 export const aiCommitmentsIntro = {
   eyebrow: "Built responsibly",
   title: "Conscious by design, not by accident",
-  lede: "These are the rules every AI decision here follows. They are why this is a foundation that happens to use AI well, not an experiment run on vulnerable people.",
+  lede: "These are the rules every AI decision here follows. They are why this is a project that happens to use AI well, not an experiment run on vulnerable people.",
 };
 
 export const aiCommitments: { title: string; body: string }[] = [

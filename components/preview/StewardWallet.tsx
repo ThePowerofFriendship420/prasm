@@ -34,7 +34,7 @@ const todayLabel = () =>
  * The steward's money view: a simple, dignified cashbook so Ong can see what he
  * has, record money he receives, and log what he spends with a category and an
  * optional receipt photo, in his own currency (Thai baht). It mirrors the field
- * member's capture flow and the foundation's finance model (logged, then the
+ * member's capture flow and the project's finance model (logged, then the
  * founder confirms). Demo only: no real money, nothing leaves the device.
  */
 export function StewardWallet() {
@@ -392,7 +392,7 @@ export function StewardWallet() {
         <p>
           A practice space. No real money moves here, and nothing is saved or
           sent. Logging what you spend, with a photo of the receipt, is how the
-          foundation keeps everything fair and clear for everyone.
+          project keeps everything fair and clear for everyone.
         </p>
       </div>
     </div>
