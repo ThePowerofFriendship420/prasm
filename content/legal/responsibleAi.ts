@@ -9,7 +9,7 @@
 export const responsibleAi = {
   lastUpdated: "June 2026",
   intro:
-    "PRASM is an AI-native foundation: a tiny human team amplified by AI so that almost everything we have reaches the families we serve. This policy sets out how we use artificial intelligence responsibly and the limits we hold ourselves to. It applies to everyone who builds or operates AI tools on PRASM's behalf. It is written to align with widely recognized frameworks, including the OECD AI Principles, the US NIST AI Risk Management Framework, and the UNESCO Recommendation on the Ethics of Artificial Intelligence.",
+    "PRASM is an AI-native project: a tiny human team amplified by AI so that almost everything we have reaches the families we serve. This policy sets out how we use artificial intelligence responsibly and the limits we hold ourselves to. It applies to everyone who builds or operates AI tools on PRASM's behalf. It is written to align with widely recognized frameworks, including the OECD AI Principles, the US NIST AI Risk Management Framework, and the UNESCO Recommendation on the Ethics of Artificial Intelligence.",
   sections: [
     {
       title: "Our approach: human story, AI engine room",
@@ -23,7 +23,7 @@ export const responsibleAi = {
       body: [
         "Every output that is public, clinical, or about an identifiable person is reviewed and approved by a person before it is used or shared. Public content (field notes, donor updates, social posts) is approved by the founder or a trusted delegate.",
         "Clinical AI output is informational reference only. It never makes a diagnosis or treatment decision; the doctor decides. Decisions about sensitive records rest with named, authorized people, and changes are logged.",
-        "We do not deploy autonomous agents that act on the foundation's behalf without supervision. A named person is accountable for each AI tool we run.",
+        "We do not deploy autonomous agents that act on the project's behalf without supervision. A named person is accountable for each AI tool we run.",
       ],
     },
     {
@@ -59,13 +59,13 @@ export const responsibleAi = {
       title: "Third-party models and vendors",
       body: [
         "We choose reputable providers and minimize the personal data placed in any prompt. Tier 2 data is never shared with a third-party model without de-identification or a private setup.",
-        "We keep our data in plain, exportable formats so the foundation's memory belongs to the foundation, not to a vendor, and so we can change tools without losing it.",
+        "We keep our data in plain, exportable formats so the project's memory belongs to the project, not to a vendor, and so we can change tools without losing it.",
       ],
     },
     {
       title: "What we will not do",
       body: [
-        "We will never publish or send anything externally without human approval; never fabricate facts, numbers, names, quotes, or impact; never reveal information that could identify or endanger an undocumented person; never let AI make a clinical decision; never feed Tier 2 data to a third-party model without de-identification or a private setup; never make AI the mascot or fundraising hook of a cause about vulnerable people; and never run autonomous, unsupervised agents on the foundation's behalf.",
+        "We will never publish or send anything externally without human approval; never fabricate facts, numbers, names, quotes, or impact; never reveal information that could identify or endanger an undocumented person; never let AI make a clinical decision; never feed Tier 2 data to a third-party model without de-identification or a private setup; never make AI the mascot or fundraising hook of a cause about vulnerable people; and never run autonomous, unsupervised agents on the project's behalf.",
       ],
     },
     {

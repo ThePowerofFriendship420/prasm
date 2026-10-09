@@ -81,7 +81,7 @@ export const activePrograms: Program[] = [
 export const roadmap = {
   eyebrow: "On the roadmap",
   title: "What we're building next",
-  lede: "These programs are in development. They're the reason PRASM exists as a foundation, and why your support today matters.",
+  lede: "These programs are in development. They're the reason PRASM exists as a project, and why your support today matters.",
   items: [
     {
       slug: "identity",

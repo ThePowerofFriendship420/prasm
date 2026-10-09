@@ -33,7 +33,7 @@ import {
 export const metadata: Metadata = buildMetadata({
   title: "Our approach to AI",
   description:
-    "How PRASM uses AI: responsibly and people-first. A conscious foundation applying AI to education, health, and identity for stateless people, with humans deciding and the families always the face. Open to mission-aligned technology partners.",
+    "How PRASM uses AI: responsibly and people-first. A conscious project applying AI to education, health, and identity for stateless people, with humans deciding and the families always the face. Open to mission-aligned technology partners.",
   path: "/ai",
 });
 

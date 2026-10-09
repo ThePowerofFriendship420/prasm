@@ -1,4 +1,4 @@
-# PRASM as an AI-Native Foundation
+# PRASM as an AI-Native Project
 
 > **What this is.** The working blueprint for how PRASM operates: a tiny human
 > team amplified by AI, so that almost everything — money, time, attention —
@@ -27,7 +27,7 @@ small normally drowns in back-office work — writing updates, chasing grants,
 thanking donors, keeping records, remembering what worked. That work is real,
 and every hour of it is an hour not spent in the village.
 
-An AI-native foundation inverts that ratio.
+An AI-native project inverts that ratio.
 
 > **The story is human. The engine room is AI.**
 > Donors meet the doctor and the families — never a bot. AI is simply how two

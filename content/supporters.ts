@@ -32,7 +32,7 @@ export const supporterTiers: SupporterTier[] = [
   {
     key: "founding",
     title: "Founding Circle",
-    subtitle: "Lead supporters whose early belief built the foundation.",
+    subtitle: "Lead supporters whose early belief built the project.",
     supporters: [
       {
         name: "The Park Family",
