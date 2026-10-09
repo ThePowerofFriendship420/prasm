@@ -117,7 +117,7 @@ export const config = {
   },
 
   contact: {
-    email: env("NEXT_PUBLIC_CONTACT_EMAIL") || "mahkha420@gmail.com",
+    email: env("NEXT_PUBLIC_CONTACT_EMAIL") || "prasmlife@gmail.com",
     formspree: env("NEXT_PUBLIC_FORMSPREE_ENDPOINT"),
     newsletterAction: env("NEXT_PUBLIC_NEWSLETTER_ACTION"),
   },

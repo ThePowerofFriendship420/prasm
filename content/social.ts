@@ -12,7 +12,7 @@ export type SocialChannel = {
 
 const instagramHandle = "@mahkha420";
 const telegramHandle = "@mahkha420";
-const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "mahkha420@gmail.com";
+const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "prasmlife@gmail.com";
 const patreonUrl = process.env.NEXT_PUBLIC_PATREON_URL ?? "";
 
 export const social = {
