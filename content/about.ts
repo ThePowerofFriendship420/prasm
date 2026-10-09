@@ -19,7 +19,7 @@ export const aboutIntro = {
 };
 
 export const founderStory: string[] = [
-  "On a visit to the village, our founder — Dr. Kwon Yonghyun (권용현), a Korean physician now practising in Thailand — met a family that had crossed from Myanmar only the day before, their home seized by the army. One of their boys was sick, and they had no way to afford a hospital that charges refugees as if they were tourists.",
+  "On a visit to the village, our founder — Dr. Kwon Yonghyun (권용현), a Korean physician who now lives in Thailand and teaches and counsels online — met a family that had crossed from Myanmar only the day before, their home seized by the army. One of their boys was sick, and they had no way to afford a hospital that charges refugees as if they were tourists.",
   "He did two things. He paid for the care and the journey to reach it. And he did what doctors are trained to do: he built a record, organizing the boy's history the way one doctor hands a patient to the next.",
   "That record did something unexpected. For a child with no papers, it became a first small proof of existence: a thread of identity where there had been none. PRASM is the idea that this can be done again, and properly, for many.",
 ];
