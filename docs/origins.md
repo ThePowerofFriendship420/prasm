@@ -100,13 +100,60 @@ government they fled. So:
   database.
 - Still Stage C. The safety design above is the precondition, as before.
 
+## Where things stand (October 2026)
+
+- **Name.** The community is **Kayan**: one of the Karenni peoples of Kayah
+  State. Karenni and Karen are related but distinct groups, so the site says
+  Kayan throughout.
+- **Records today.** PRASM is collecting the records that Mae Hong Son
+  hospitals produce when we bring people to care. Their value is in volume and
+  continuity: the more records a person has, and the longer they run, the more
+  they mean.
+- **Biometrics.** Part of the plan, not yet decided.
+
+## Tentative direction: a biometric-linked wallet as personal ID
+
+The founder's current thinking: **a person's bioinformation acts as their
+personal identification number, linked to a crypto wallet address.** The
+technology and the many variables will become clear as we go. This is a
+direction, not a design. Notes to carry into that work:
+
+- **Biometrics should unlock a key, not be the key.** Fingerprints and faces
+  never read exactly the same twice, cannot be changed if leaked, and can be
+  taken by force. Safer pattern: generate the wallet key randomly, and use the
+  biometric only to match the person to it (on a device, or against an
+  encrypted template), with a human recovery route if it fails.
+- **Nothing personal on a public chain.** A public blockchain is permanent and
+  readable by anyone, and PDPA gives people the right to erase their data. At
+  most, put hashes or signed attestations on chain ("a licensed clinic recorded
+  a visit on this date"). Records themselves stay off chain, encrypted.
+- **One address is one long trail.** Every use of a single public address links
+  together. Consider separate keys per purpose, or a decentralized identifier
+  (DID) and verifiable credentials, where the person shows only what is needed.
+- **The person must be able to hold it without a smartphone.** A printed card
+  with a QR code, held by the person, backed up by PRASM, works off-grid.
+- **Precedents to learn from.** Iris-scan identity projects tied to crypto
+  wallets have been suspended or investigated by regulators in several
+  countries; humanitarian biometric programs have shared refugee data with the
+  governments people fled. Both are lessons in what not to repeat.
+
+### What to do now so records count later
+
+Records only add up if they are collected consistently from day one:
+
+1. **Consent for each record we keep**, recorded with the record.
+2. **Provenance on every record:** which hospital, which doctor, date, document
+   type, how we got the copy.
+3. **One stable internal ID per person**, so records from different visits link
+   to the same person. It can later be bound to a wallet or biometric without
+   re-collecting anything.
+4. **Encrypted storage with an access log** (Tier 2), never in shared chat
+   apps.
+
 ## Open questions for the founder
 
-- **Kayan or Karen?** The site says _Kayan_ throughout. Confirm which name the
-  community uses for itself, so every page and document is consistent.
-- **Partner hospitals:** which clinics or hospitals in Mae Hong Son would
-  accept a PRASM record as a patient history today?
+- **Partner hospitals:** which hospitals' records are we collecting today, and
+  would they confirm a record is genuine if asked?
 - **Recognition path:** which bodies (Thai civil registration, UNHCR, NGOs)
   should the record eventually help a person reach, and with which partners?
-- **Biometrics:** is any biometric identifier part of the intent, or only the
-  medical record itself?
+- **Current format:** are records kept as paper, photos, or scans, and where?
