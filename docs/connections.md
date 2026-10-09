@@ -56,7 +56,7 @@ connected.
 
 | What | Variable | Where to get it | Status |
 | --- | --- | --- | --- |
-| Contact inbox | `NEXT_PUBLIC_CONTACT_EMAIL` | Your address (defaults to `mahkha420@gmail.com` until changed) | [ ] |
+| Contact inbox | `NEXT_PUBLIC_CONTACT_EMAIL` | Your address (defaults to `prasmlife@gmail.com` until changed) | [ ] |
 | Contact form delivery | `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | A free [Formspree](https://formspree.io) form endpoint | [ ] |
 | Newsletter signup | `NEXT_PUBLIC_NEWSLETTER_ACTION` | Buttondown / Mailchimp embedded form action URL | [ ] |
 
