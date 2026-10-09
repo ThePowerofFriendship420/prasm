@@ -29,9 +29,9 @@ export const fastFacts: { label: string; value: string }[] = [
    * Named, replacing "A medical doctor (named by role, by choice, for now)".
    *
    * This list's own rule is verified-only — no placeholders, no unconfirmed dates —
-   * so what is here is only what his own curricula vitae and independent press
-   * actually record. The chairmanship in particular is corroborated outside his own
-   * documents: MJBizDaily reported it in July 2019.
+   * so what is here is only what his own curricula vitae record, as checked during
+   * the mahkha.com build. Cannabinoid-related roles are left out at the founder's
+   * request for now.
    *
    * What is deliberately absent is a medical registration number. Four CVs asserting
    * MD are the doctor's account of himself, which is a different object from a
@@ -41,7 +41,7 @@ export const fastFacts: { label: string; value: string }[] = [
   {
     label: "Founded by",
     value:
-      "Dr. Kwon Yonghyun (권용현), MD — a Korean physician now teaching and counselling online from Thailand, and chairperson of the Korea Cannabinoid Association since 2018",
+      "Dr. Kwon Yonghyun (권용현), MD — a Korean physician founder and Wellness Director of PRASM, now teaching and counselling online from Thailand",
   },
   {
     label: "Status",
@@ -83,8 +83,7 @@ export const mediaGuidelines = {
 export const founderBio = {
   title: "About the founder",
   body: [
-    "PRASM was founded by Dr. Kwon Yonghyun (권용현), a Korean physician who graduated from Korea University Medical College and has practised integrative and holistic medicine since. He directed Bloom Clinic in Seoul from 2008 to 2017, and in 2019 an integrative clinic of his own.",
-    "He chairs the Korea Cannabinoid Association, which connects patients with doctors and advises on cannabis in Korea, and has chaired the Korea Aromatherapy Association since 2014. MJBizDaily described him in 2019 as the first doctor in Korea specializing in cannabinoids. He is a credited subject in Pull (2025), a documentary on the Korean hemp movement.",
+    "PRASM was founded by Dr. Kwon Yonghyun (권용현), a Korean physician who graduated from Korea University Medical College. He directed Bloom Clinic in Seoul from 2008 to 2017, focusing mainly on aesthetic medicine, then practised functional and integrative medicine at Energy Healing Clinic (에너지힐링의원) from 2018 to 2019. He has chaired the Korea Aromatherapy Association since 2014, and serves as PRASM's Wellness Director.",
     "He now lives in Thailand and teaches and counsels online through his own practice, MahKha, which funds part of this work. His full record, and an honest note on what of it can and cannot yet be verified, is published there.",
   ],
   link: {
