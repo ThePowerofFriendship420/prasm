@@ -10,7 +10,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
   description:
-    "Reach PRASM on Instagram or Telegram, by email, or through the form. We'd love to hear how you'd like to help.",
+    "Reach PRASM by email or through the form. We'd love to hear how you'd like to help.",
   path: "/contact",
 });
 
@@ -35,7 +35,7 @@ export default function ContactPage() {
           <div className="lg:pt-2">
             <h2 className="text-h3">Other ways to reach us</h2>
             <p className="mt-3 text-stone">
-              We&apos;re most responsive on Instagram and Telegram.
+              Email us any time. We read every message.
             </p>
             <SocialLinks
               variant="dark"
