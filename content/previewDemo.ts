@@ -104,7 +104,7 @@ export type DemoDecision = {
 };
 
 export const demoDecisions: DemoDecision[] = [
-  { id: "D-1", title: "Lead with a US fiscal sponsor before a Thai entity", status: "agreed", note: "Fastest path to deductibility and credibility; revisit a Thai foundation later.", by: "Founder", at: "Jun 14" },
+  { id: "D-1", title: "Lead with a US fiscal sponsor before a Thai entity", status: "agreed", note: "Fastest path to deductibility and credibility; revisit a Thai entity later.", by: "Founder", at: "Jun 14" },
   { id: "D-2", title: "AI stays in the engine room; people are the face", status: "agreed", note: "Per the Responsible AI policy: AI proposes, a person decides.", by: "Founder", at: "Jun 12" },
   { id: "D-3", title: "Set the dual-approval threshold at $200", status: "proposed", note: "Confirm with the treasurer before it goes in the controls policy.", by: "Treasurer", at: "Jun 15" },
 ];
