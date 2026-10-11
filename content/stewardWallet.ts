@@ -10,6 +10,8 @@
  * demo only remembers entries in this browser.
  */
 
+import { demoDate } from "@/lib/demoDates";
+
 export type WalletDirection = "in" | "out";
 
 /** A spend the steward logs is "logged" until the founder confirms it. */
@@ -53,7 +55,7 @@ export const stewardWalletSeed: WalletEntry[] = [
   {
     id: "W-01",
     direction: "in",
-    date: "Jun 1",
+    date: demoDate(9),
     amount: 4000,
     category: "Monthly stipend",
     note: "For the role this month.",
@@ -62,7 +64,7 @@ export const stewardWalletSeed: WalletEntry[] = [
   {
     id: "W-02",
     direction: "out",
-    date: "Jun 3",
+    date: demoDate(7),
     amount: 60,
     category: "Tablet charging and power",
     note: "Charged the tablet at the shop.",
@@ -71,7 +73,7 @@ export const stewardWalletSeed: WalletEntry[] = [
   {
     id: "W-03",
     direction: "out",
-    date: "Jun 5",
+    date: demoDate(5),
     amount: 200,
     category: "Mobile data",
     note: "Data top-up for the month.",
@@ -80,7 +82,7 @@ export const stewardWalletSeed: WalletEntry[] = [
   {
     id: "W-04",
     direction: "out",
-    date: "Jun 6",
+    date: demoDate(4),
     amount: 80,
     category: "Local travel",
     note: "Songthaew to the next hamlet and back.",
@@ -89,7 +91,7 @@ export const stewardWalletSeed: WalletEntry[] = [
   {
     id: "W-05",
     direction: "in",
-    date: "Jun 8",
+    date: demoDate(2),
     amount: 1000,
     category: "Spark-fund advance",
     note: "Advance for a botany kit, approved by the founder.",
@@ -98,7 +100,7 @@ export const stewardWalletSeed: WalletEntry[] = [
   {
     id: "W-06",
     direction: "out",
-    date: "Jun 9",
+    date: demoDate(1),
     amount: 320,
     category: "Learning materials",
     note: "Seeds, two small pots, and a picture book.",

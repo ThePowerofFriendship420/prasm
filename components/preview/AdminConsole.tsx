@@ -43,6 +43,9 @@ import { SessionNotes } from "./SessionNotes";
 import { type Perspective } from "./CuriositySwitcher";
 import { useWallet } from "./walletStore";
 import { walletTotals } from "@/content/stewardWallet";
+import { ScrollRow } from "./ScrollRow";
+import { useCuriosityLive } from "./curiosityStore";
+import { sparks as seedSparks } from "@/content/curiosityDemo";
 
 type Tab =
   | "overview"
@@ -133,6 +136,16 @@ export function AdminConsole({
   const categories = Object.entries(byCategory).sort((a, b) => b[1] - a[1]);
   const pendingCaptures = demoCaptures.filter((c) => c.status === "pending");
 
+  // What needs the founder now, so the overview opens on decisions, not stats.
+  const live = useCuriosityLive();
+  const needsItems: { tab: Tab; count: number; label: string }[] = [
+    { tab: "approvals", count: pending.filter((e) => !signedOff[e.id]).length, label: "expenses to sign off" },
+    { tab: "captures", count: pendingCaptures.filter((c) => !reviewed[c.id]).length, label: "field captures to review" },
+    { tab: "curiosity", count: [...seedSparks, ...live.sparks].filter((sp) => sp.status === "proposed").length, label: "sparks to approve" },
+    { tab: "finance", count: stewardLogged, label: "steward entries to sign off" },
+  ];
+  const needsYou = needsItems.filter((n) => n.count > 0);
+
   const createMember = () => {
     if (!name.trim() || !email.trim()) return;
     const m: Invite = { name: name.trim(), email: email.trim(), role };
@@ -202,7 +215,7 @@ export function AdminConsole({
         </div>
 
         {/* Mobile tabs */}
-        <div className="mt-5 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:hidden">
+        <ScrollRow className="mt-5 lg:hidden">
           {tabs.map((t) => {
             const Icon = t.icon;
             const isActive = tab === t.id;
@@ -213,7 +226,7 @@ export function AdminConsole({
               </button>
             );
           })}
-        </div>
+        </ScrollRow>
 
         <div className="mt-5 lg:mt-6 lg:grid lg:grid-cols-[220px_1fr] lg:gap-8">
           {/* Sidebar */}
@@ -250,7 +263,29 @@ export function AdminConsole({
             {/* OVERVIEW */}
             {tab === "overview" && (
               <div className="space-y-6">
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className={`${card} p-5`}>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-display text-lg font-semibold text-forest-700">Needs you</h3>
+                    {needsYou.length > 0 && <Badge tone="gold">{needsYou.reduce((n, i) => n + i.count, 0)}</Badge>}
+                  </div>
+                  {needsYou.length === 0 ? (
+                    <p className="mt-2 flex items-center gap-1.5 text-sm text-forest-700">
+                      <CircleCheck className="h-4 w-4 text-forest-600" aria-hidden />
+                      You&apos;re all caught up.
+                    </p>
+                  ) : (
+                    <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                      {needsYou.map((n) => (
+                        <button key={n.tab} type="button" onClick={() => setTab(n.tab)} className="flex items-center gap-3 rounded-[14px] border border-line bg-sand/50 px-4 py-3 text-left text-sm transition-colors hover:bg-sand">
+                          <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-clay-600 px-2 text-xs font-semibold text-cream">{n.count}</span>
+                          <span className="flex-1 text-forest-700">{n.label}</span>
+                          <ArrowRight className="h-4 w-4 text-stone" aria-hidden />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
                   {[
                     { label: "Active people", value: String(activePeople.length), icon: Users },
                     { label: "Pending approvals", value: String(pending.length), icon: ClipboardCheck },
@@ -269,7 +304,7 @@ export function AdminConsole({
                     );
                   })}
                 </div>
-                <div className="grid gap-6 lg:grid-cols-[3fr_2fr]">
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-[3fr_2fr]">
                   <div className={`${card} p-6`}>
                     <h3 className="font-display text-lg font-semibold text-forest-700">Use of funds</h3>
                     <p className="mt-1 text-sm text-stone">Approved spend by category, this period.</p>

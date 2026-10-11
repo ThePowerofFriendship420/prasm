@@ -11,6 +11,8 @@
  * "Explorer names" are playful nicknames a child might pick, never identities.
  */
 
+import { demoDate } from "@/lib/demoDates";
+
 export type AgeBand = "child" | "teen" | "adult";
 export type ConsentStatus = "given" | "pending" | "withdrawn";
 export type AvatarTone = "clay" | "forest" | "gold";
@@ -60,7 +62,7 @@ export const learners: Learner[] = [
     ageBand: "child",
     consent: "given",
     photoConsent: true,
-    joined: "Jun 2",
+    joined: demoDate(16),
     weeksActive: 3,
     sessions: 7,
     lastActive: "today",
@@ -74,7 +76,7 @@ export const learners: Learner[] = [
     ageBand: "child",
     consent: "given",
     photoConsent: true,
-    joined: "Jun 4",
+    joined: demoDate(14),
     weeksActive: 4,
     sessions: 11,
     lastActive: "yesterday",
@@ -88,7 +90,7 @@ export const learners: Learner[] = [
     ageBand: "teen",
     consent: "given",
     photoConsent: false,
-    joined: "Jun 6",
+    joined: demoDate(12),
     weeksActive: 2,
     sessions: 4,
     lastActive: "2 days ago",
@@ -102,7 +104,7 @@ export const learners: Learner[] = [
     ageBand: "adult",
     consent: "given",
     photoConsent: true,
-    joined: "Jun 8",
+    joined: demoDate(10),
     weeksActive: 3,
     sessions: 6,
     lastActive: "today",
@@ -116,7 +118,7 @@ export const learners: Learner[] = [
     ageBand: "child",
     consent: "pending",
     photoConsent: false,
-    joined: "Jun 17",
+    joined: demoDate(1),
     weeksActive: 0,
     sessions: 0,
     lastActive: "not yet",
@@ -129,10 +131,10 @@ export const learners: Learner[] = [
     ageBand: "child",
     consent: "withdrawn",
     photoConsent: false,
-    joined: "Jun 1",
+    joined: demoDate(17),
     weeksActive: 1,
     sessions: 2,
-    lastActive: "Jun 10",
+    lastActive: demoDate(8),
     stickers: [],
     tone: "gold",
   },

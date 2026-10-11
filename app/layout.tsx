@@ -6,6 +6,7 @@ import { fontVariables } from "@/lib/fonts";
 import { site } from "@/content/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { JsonLd } from "@/components/JsonLd";
 import { siteJsonLd } from "@/lib/seo";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -102,13 +103,17 @@ export default function RootLayout({
             Skip to content
           </a>
           <JsonLd data={siteJsonLd()} />
-          <Header />
+          <SiteChrome>
+            <Header />
+          </SiteChrome>
           <main id="main" className="flex-1">
             {children}
           </main>
-          <Footer />
-          <TeamLoginButton />
-          <InstallButton />
+          <SiteChrome>
+            <Footer />
+            <TeamLoginButton />
+            <InstallButton />
+          </SiteChrome>
         </ThemeProvider>
         <ServiceWorker />
         {analyticsEnabled && (

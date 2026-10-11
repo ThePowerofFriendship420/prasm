@@ -137,7 +137,7 @@ export function AuthScreen({
   // ---- Role picker ----
   if (!active) {
     return (
-      <div className="flex min-h-[80vh] items-center justify-center bg-sand px-6 py-16">
+      <div className="flex min-h-[calc(100dvh-3.5rem)] items-center justify-center bg-sand px-6 py-12">
         <div className="w-full max-w-md">
           <div className={`${card} p-8`}>
             <span className="inline-flex h-12 w-12 items-center justify-center rounded-[14px] bg-clay-50 text-clay-600">
@@ -232,7 +232,7 @@ export function AuthScreen({
 
   // ---- Role-specific sign-in ----
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-sand px-6 py-16">
+    <div className="flex min-h-[calc(100dvh-3.5rem)] items-center justify-center bg-sand px-6 py-12">
       <div className="w-full max-w-md">
         <div className={`${card} p-8`}>
           <button

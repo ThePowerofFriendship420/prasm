@@ -35,6 +35,7 @@ import {
   type Gift,
 } from "@/content/donor";
 import { toast } from "./toast";
+import { ScrollRow } from "./ScrollRow";
 
 type Tab = "overview" | "giving" | "documents";
 
@@ -271,7 +272,7 @@ export function DonorPortal({ onSignOut }: { onSignOut: () => void }) {
         </div>
 
         {/* Tabs */}
-        <div className="-mx-1 mt-4 flex gap-2 overflow-x-auto px-1 pb-1">
+        <ScrollRow className="mt-4">
           {tabs.map((t) => {
             const Icon = t.icon;
             const isActive = tab === t.id;
@@ -292,7 +293,7 @@ export function DonorPortal({ onSignOut }: { onSignOut: () => void }) {
               </button>
             );
           })}
-        </div>
+        </ScrollRow>
 
         {/* OVERVIEW */}
         {tab === "overview" && (
