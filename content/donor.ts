@@ -5,6 +5,8 @@
  * document; in the real system PRASM issues receipts and statements.
  */
 
+import { demoDate, demoMonth } from "@/lib/demoDates";
+
 export type GiftFund =
   | "Where needed most"
   | "Education"
@@ -39,12 +41,12 @@ export const demoDonor: DonorProfile = {
   id: "D-you",
   name: "Jordan Rivera",
   emailMasked: "j••••••@••••.org",
-  since: "Dec 2025",
+  since: demoMonth(185),
   anonymous: false,
   gifts: [
     {
       id: "R-2026-0007",
-      date: "Jun 2, 2026",
+      date: demoDate(9, { year: true }),
       amountUsd: 250,
       fund: "Where needed most",
       method: "Card",
@@ -52,7 +54,7 @@ export const demoDonor: DonorProfile = {
     },
     {
       id: "R-2026-0005",
-      date: "May 2, 2026",
+      date: demoDate(40, { year: true }),
       amountUsd: 250,
       fund: "Where needed most",
       method: "Card",
@@ -60,7 +62,7 @@ export const demoDonor: DonorProfile = {
     },
     {
       id: "R-2026-0003",
-      date: "Apr 2, 2026",
+      date: demoDate(70, { year: true }),
       amountUsd: 250,
       fund: "Where needed most",
       method: "Card",
@@ -68,7 +70,7 @@ export const demoDonor: DonorProfile = {
     },
     {
       id: "R-2026-0001",
-      date: "Mar 15, 2026",
+      date: demoDate(100, { year: true }),
       amountUsd: 1000,
       fund: "Education",
       method: "Bank transfer",
@@ -76,7 +78,7 @@ export const demoDonor: DonorProfile = {
     },
     {
       id: "R-2025-0012",
-      date: "Dec 20, 2025",
+      date: demoDate(185, { year: true }),
       amountUsd: 500,
       fund: "Medical care",
       method: "Crypto",

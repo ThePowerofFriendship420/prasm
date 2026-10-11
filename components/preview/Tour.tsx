@@ -147,6 +147,9 @@ export function Tour({
   useEffect(() => {
     if (!open) return;
     const s = tourSteps[idx];
+    // Bring the target into view once per step, for example a tab chip that
+    // starts off screen in a sideways-scrolling row on a phone.
+    let revealed = false;
     const measure = () => {
       if (!s.spotlight || s.dim === false) {
         setRect((prev) => (prev === null ? prev : null));
@@ -156,6 +159,14 @@ export function Tour({
       if (!el) {
         setRect((prev) => (prev === null ? prev : null));
         return;
+      }
+      if (!revealed) {
+        revealed = true;
+        el.scrollIntoView({
+          block: "nearest",
+          inline: "center",
+          behavior: "smooth",
+        });
       }
       const r = el.getBoundingClientRect();
       if (r.width === 0 && r.height === 0) {

@@ -4,14 +4,15 @@ import { CircleCheck, Info, X } from "lucide-react";
 import { useToasts, dismissToast } from "./toast";
 
 /**
- * Renders the toast stack for the demo: small, friendly confirmations at the
- * top, each auto-dismissing. Mounted once by PreviewConsole.
+ * Renders the toast stack for the demo: small, friendly confirmations just
+ * above the demo bar, where they never cover a screen's header. Each one
+ * auto-dismisses. Mounted once by PreviewConsole.
  */
 export function Toaster() {
   const toasts = useToasts();
   if (toasts.length === 0) return null;
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-4 z-[60] flex flex-col items-center gap-2 px-4">
+    <div className="pointer-events-none fixed inset-x-0 bottom-36 z-[60] flex flex-col-reverse items-center gap-2 px-4 sm:bottom-20">
       {toasts.map((t) => {
         const Icon = t.tone === "info" ? Info : CircleCheck;
         return (

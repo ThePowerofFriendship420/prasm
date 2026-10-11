@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
+import { Logo } from "@/components/layout/Logo";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
 import { demoPeople, type DemoPerson, type Role } from "@/content/previewDemo";
 import { type Learner } from "@/content/curiosityDemo";
@@ -165,7 +168,7 @@ export function PreviewConsole() {
     screen = <DonorPortal onSignOut={signOut} />;
   } else if (view === "setup") {
     screen = (
-      <div className="flex min-h-[80vh] items-center justify-center bg-sand px-6 py-16">
+      <div className="flex min-h-[calc(100dvh-3.5rem)] items-center justify-center bg-sand px-6 py-12">
         <div className="w-full max-w-md">
           <div className={`${card} p-8`}>
             <Badge tone="gold">Invite link · demo</Badge>
@@ -242,7 +245,32 @@ export function PreviewConsole() {
 
   return (
     <>
-      <div key={view} className="animate-view">
+      {/* The demo runs full screen (see SiteChrome). Before sign-in there is no
+          role header yet, so a slim app bar keeps the brand and a way back. */}
+      {!showBar && (
+        <div className="sticky top-0 z-30 border-b border-line bg-cream/90 backdrop-blur supports-[backdrop-filter]:bg-cream/75">
+          <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 sm:px-6">
+            <Logo />
+            <Badge tone="gold">Demo</Badge>
+            <div className="ml-auto flex items-center gap-1">
+              <ThemeToggle className="h-9 w-9 rounded-full text-stone hover:bg-sand" />
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-forest-700 transition-colors hover:bg-sand"
+              >
+                <ArrowLeft className="h-4 w-4" aria-hidden />
+                <span className="hidden sm:inline">Back to site</span>
+                <span className="sm:hidden">Site</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Bottom room so the demo bar never covers a screen's last row. */}
+      <div
+        key={view}
+        className={`min-h-dvh animate-view bg-sand ${showBar ? "pb-24" : ""}`}
+      >
         {screen}
       </div>
       {showBar && (

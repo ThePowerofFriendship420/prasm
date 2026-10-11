@@ -5,6 +5,8 @@
  * the demo feels like the future console.
  */
 
+import { demoDate, demoStamp } from "@/lib/demoDates";
+
 export type Role =
   | "admin"
   | "treasurer"
@@ -63,10 +65,10 @@ export type DemoCapture = {
 };
 
 export const demoCaptures: DemoCapture[] = [
-  { id: "C-001", kind: "note", by: "Teacher", at: "Jun 15, 09:12", summary: "New family arrived overnight; two children, mother needs antenatal care.", status: "pending" },
-  { id: "C-002", kind: "photo", by: "Teacher", at: "Jun 15, 09:15", summary: "3 photos from the morning school session", status: "pending" },
-  { id: "C-003", kind: "voice", by: "Founder (Dr.)", at: "Jun 14, 17:40", summary: "Voice memo · 0:42 · clinic visit notes", status: "pending" },
-  { id: "C-004", kind: "expense", by: "Founder (Dr.)", at: "Jun 14, 16:02", summary: "Pharmacy receipt · $38 · Medical", status: "approved" },
+  { id: "C-001", kind: "note", by: "Teacher", at: demoStamp(0, "09:12"), summary: "New family arrived overnight; two children, mother needs antenatal care.", status: "pending" },
+  { id: "C-002", kind: "photo", by: "Teacher", at: demoStamp(0, "09:15"), summary: "3 photos from the morning school session", status: "pending" },
+  { id: "C-003", kind: "voice", by: "Founder (Dr.)", at: demoStamp(1, "17:40"), summary: "Voice memo · 0:42 · clinic visit notes", status: "pending" },
+  { id: "C-004", kind: "expense", by: "Founder (Dr.)", at: demoStamp(1, "16:02"), summary: "Pharmacy receipt · $38 · Medical", status: "approved" },
 ];
 
 /* ---- Boardroom: the internal space (goals, history, governance) ---- */
@@ -104,7 +106,7 @@ export type DemoDecision = {
 };
 
 export const demoDecisions: DemoDecision[] = [
-  { id: "D-1", title: "Lead with a US fiscal sponsor before a Thai entity", status: "agreed", note: "Fastest path to deductibility and credibility; revisit a Thai entity later.", by: "Founder", at: "Jun 14" },
-  { id: "D-2", title: "AI stays in the engine room; people are the face", status: "agreed", note: "Per the Responsible AI policy: AI proposes, a person decides.", by: "Founder", at: "Jun 12" },
-  { id: "D-3", title: "Set the dual-approval threshold at $200", status: "proposed", note: "Confirm with the treasurer before it goes in the controls policy.", by: "Treasurer", at: "Jun 15" },
+  { id: "D-1", title: "Lead with a US fiscal sponsor before a Thai entity", status: "agreed", note: "Fastest path to deductibility and credibility; revisit a Thai entity later.", by: "Founder", at: demoDate(1) },
+  { id: "D-2", title: "AI stays in the engine room; people are the face", status: "agreed", note: "Per the Responsible AI policy: AI proposes, a person decides.", by: "Founder", at: demoDate(3) },
+  { id: "D-3", title: "Set the dual-approval threshold at $200", status: "proposed", note: "Confirm with the treasurer before it goes in the controls policy.", by: "Treasurer", at: demoDate(0) },
 ];

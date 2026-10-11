@@ -11,6 +11,7 @@
  */
 
 import { type AgeBand, type ConsentStatus } from "./curiosityDemo";
+import { demoDate } from "@/lib/demoDates";
 
 export type MedicalKind =
   | "allergy"
@@ -84,7 +85,7 @@ export const demoStudent: StudentProfile = {
   household: "Parent of two young learners",
   statusNote: "Undocumented, no birth record",
   consent: "given",
-  joined: "Jun 8",
+  joined: demoDate(5),
   interest: "Phones and how things work",
   medical: [
     {
@@ -92,21 +93,21 @@ export const demoStudent: StudentProfile = {
       kind: "allergy",
       title: "Penicillin",
       detail: "A rash when given penicillin as a child.",
-      date: "Jun 8",
+      date: demoDate(5),
     },
     {
       id: "M-02",
       kind: "condition",
       title: "Mild asthma",
       detail: "Worse in the cool season. Uses an inhaler when needed.",
-      date: "Jun 8",
+      date: demoDate(5),
     },
     {
       id: "M-03",
       kind: "visit",
       title: "Mobile clinic checkup",
       detail: "Seen at the June mobile clinic. Blood pressure normal.",
-      date: "Jun 12",
+      date: demoDate(1),
     },
   ],
 };

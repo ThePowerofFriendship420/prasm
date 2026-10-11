@@ -212,7 +212,7 @@ export function SessionNotes({ context = "Preview" }: { context?: string }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open session notes"
-        className="fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full bg-forest-700 px-4 py-3 text-sm font-medium text-cream shadow-lift transition-transform hover:scale-[1.03]"
+        className="fixed right-4 bottom-20 z-40 inline-flex items-center gap-2 rounded-full bg-forest-700 px-4 py-3 text-sm font-medium text-cream shadow-lift transition-transform hover:scale-[1.03] sm:bottom-4"
       >
         <NotebookPen className="h-4 w-4" aria-hidden />
         Notes

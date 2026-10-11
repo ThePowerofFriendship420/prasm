@@ -19,6 +19,7 @@ import {
   PlayCircle,
   Wallet,
   LogOut,
+  Sun,
 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import {
@@ -38,10 +39,22 @@ import { StewardGuide } from "./StewardGuide";
 import { EnrollStudent, type EnrollData } from "./EnrollStudent";
 import { useStudents, addStudent, type StudentRecord } from "./demoStore";
 import { StewardWallet } from "./StewardWallet";
+import { ScrollRow } from "./ScrollRow";
+import { StewardToday } from "./StewardToday";
+import { useWallet } from "./walletStore";
+import { walletTotals } from "@/content/stewardWallet";
 
-type Tab = "guide" | "learners" | "enroll" | "sparks" | "money" | "pay";
+type Tab =
+  | "today"
+  | "guide"
+  | "learners"
+  | "enroll"
+  | "sparks"
+  | "money"
+  | "pay";
 
 const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
+  { id: "today", label: "Today", icon: Sun },
   { id: "guide", label: "Guide", icon: BookOpen },
   { id: "learners", label: "Learners", icon: Users },
   { id: "enroll", label: "Enroll", icon: UserPlus },
@@ -62,10 +75,11 @@ export function StewardConsole({
   onSignOut: () => void;
   onSwitch?: (p: Perspective) => void;
 }) {
-  const [tab, setTab] = useState<Tab>("guide");
+  const [tab, setTab] = useState<Tab>("today");
   const students = useStudents();
   const sparkList = seedSparks;
   const live = useCuriosityLive();
+  const wallet = useWallet();
 
   const [justAdded, setJustAdded] = useState<{
     name: string;
@@ -166,16 +180,8 @@ export function StewardConsole({
           celebratory details only, never the private Tier 2 record.
         </GuideTip>
 
-        <div className="flex items-start gap-2.5 rounded-[14px] bg-clay-50 px-4 py-3 text-sm text-clay-700 ring-1 ring-clay-100 ring-inset">
-          <span aria-hidden>•</span>
-          <p>
-            Preview with sample data. Not connected to a backend, and nothing
-            here is saved.
-          </p>
-        </div>
-
         {/* Tabs */}
-        <div className="-mx-1 mt-4 flex gap-2 overflow-x-auto px-1 pb-1">
+        <ScrollRow className="mt-4">
           {tabs.map((t) => {
             const Icon = t.icon;
             const isActive = tab === t.id;
@@ -197,7 +203,24 @@ export function StewardConsole({
               </button>
             );
           })}
-        </div>
+        </ScrollRow>
+
+        {/* TODAY */}
+        {tab === "today" && (
+          <StewardToday
+            active={active.length}
+            returning={returning}
+            sparksWaiting={
+              sparkList.filter((s) => s.status === "noticed").length +
+              live.sparks.filter((s) => s.status === "noticed").length
+            }
+            newestSpark={live.sparks.find((s) => s.status === "noticed")}
+            balance={walletTotals(wallet).balance}
+            sessionsLogged={sessionLog.length}
+            onGo={setTab}
+            onStartSession={onSwitch ? () => onSwitch("learner") : undefined}
+          />
+        )}
 
         {/* GUIDE */}
         {tab === "guide" && (
