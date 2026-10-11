@@ -77,6 +77,14 @@ a human approves every output. Live drafting needs `ANTHROPIC_API_KEY` in
 Governance and decision documents (entity options, sponsor outreach, board
 recruitment, risk register, audits) live under [`docs/`](docs).
 
+## How changes go live
+
+1. Work happens on a branch and opens a pull request into `main`.
+2. Vercel posts a preview link on the pull request. Check it there.
+3. Merge into `main`. Vercel deploys `main` to www.prasm.life automatically.
+
+`main` is the only production branch. Don't merge into other branches.
+
 ## Before launch
 
 See the checklist in the project plan. In short: set real donation links +
