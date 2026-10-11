@@ -83,7 +83,7 @@ export const howWeReport = {
 export const statusStatement = {
   title: "An honest note on our status",
   body: [
-    "PRASM is an emerging, community-focused initiative. We are still formalizing our legal and organizational structure, and plan to register as a foundation.",
+    "PRASM is an emerging, community-focused initiative. We are still formalizing our legal and organizational structure, and plan to register formally.",
     "That means we cannot currently promise tax-deductible receipts, and we don't publish audited financials yet. We'd rather tell you that plainly than imply otherwise. As our structure formalizes, this page will be updated.",
     "If you'd like documentation of how a specific gift was used, just ask. We're happy to account for it.",
   ],
@@ -91,7 +91,7 @@ export const statusStatement = {
 
 /**
  * Registration & status facts, shown as a plain table on the Transparency page.
- * Honest placeholders today — fill these in as the Thai foundation registration
+ * Honest placeholders today — fill these in as the Thai registration
  * completes. TODO[user]: replace "value" fields below with real details.
  */
 export const registrationDetails: { label: string; value: string }[] = [
