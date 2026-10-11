@@ -6,30 +6,16 @@
 import { config } from "@/lib/config";
 
 export type SocialChannel = {
-  key: "instagram" | "telegram" | "email" | "patreon";
+  key: "email" | "patreon";
   label: string;
   handle: string;
   href: string;
 };
 
-const instagramHandle = "@mahkha420";
-const telegramHandle = "@mahkha420";
 const email = config.contact.email;
 const patreonUrl = process.env.NEXT_PUBLIC_PATREON_URL ?? "";
 
 export const social = {
-  instagram: {
-    key: "instagram",
-    label: "Instagram",
-    handle: instagramHandle,
-    href: `https://instagram.com/${instagramHandle.replace("@", "")}`,
-  },
-  telegram: {
-    key: "telegram",
-    label: "Telegram",
-    handle: telegramHandle,
-    href: `https://t.me/${telegramHandle.replace("@", "")}`,
-  },
   email: {
     key: "email",
     label: "Email",
@@ -46,8 +32,6 @@ export const social = {
 
 /** Channels shown in the footer / contact (Patreon only if configured). */
 export const socialList: SocialChannel[] = [
-  social.instagram,
-  social.telegram,
   social.email,
   ...(patreonUrl ? [social.patreon] : []),
 ];
