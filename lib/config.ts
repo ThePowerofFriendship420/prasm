@@ -117,7 +117,8 @@ export const config = {
   },
 
   contact: {
-    email: env("NEXT_PUBLIC_CONTACT_EMAIL") || "prasmlife@gmail.com",
+    // Fixed in code on purpose, so a stale hosting env var can never show an old inbox.
+    email: "prasmlife@gmail.com",
     formspree: env("NEXT_PUBLIC_FORMSPREE_ENDPOINT"),
     newsletterAction: env("NEXT_PUBLIC_NEWSLETTER_ACTION"),
   },

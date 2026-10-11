@@ -1,7 +1,9 @@
 /**
- * Contact + social channels. Values fall back to sensible defaults but
- * should be confirmed via env before launch (see .env.local.example).
+ * Contact + social channels. The email comes from lib/config.ts (one source
+ * of truth); the Patreon URL can be set via env (see .env.local.example).
  */
+
+import { config } from "@/lib/config";
 
 export type SocialChannel = {
   key: "instagram" | "telegram" | "email" | "patreon";
@@ -12,7 +14,7 @@ export type SocialChannel = {
 
 const instagramHandle = "@mahkha420";
 const telegramHandle = "@mahkha420";
-const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "prasmlife@gmail.com";
+const email = config.contact.email;
 const patreonUrl = process.env.NEXT_PUBLIC_PATREON_URL ?? "";
 
 export const social = {
