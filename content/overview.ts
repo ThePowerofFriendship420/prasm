@@ -1,6 +1,6 @@
 /**
  * The one-page program overview, kept as structured content so it can be shown,
- * printed, and translated. Written for foundation and donor conversations:
+ * printed, and translated. Written for funder and donor conversations:
  * dignity-first, safety as a precondition rather than a feature, and honest
  * about stage. It deliberately does not claim a running service. Figures are
  * illustrative. This mirrors docs/curiosity-program.md, distilled to one page.
@@ -69,7 +69,7 @@ export const programOverview = {
           "Small learning materials for a child who keeps lighting up: seeds, a sketchbook, a field guide.",
       },
       {
-        label: "A secure foundation",
+        label: "A secure identity path",
         detail:
           "The careful build of a private, consented path toward recognized identity.",
       },

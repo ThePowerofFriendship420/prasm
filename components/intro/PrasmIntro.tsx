@@ -7,6 +7,7 @@
 
 import { Fragment, useMemo, type CSSProperties, type ReactNode } from "react";
 import { Stage, useTime, Easing, clamp } from "./engine";
+import { config } from "@/lib/config";
 
 /* ── Brand tokens (current site palette) ─────────────────────────────────── */
 const C = {
@@ -1299,7 +1300,7 @@ function CloseScene({ local }: { local: number }) {
               marginTop: 22,
             }}
           >
-            Mae Hong Son, Thailand&nbsp;&nbsp;·&nbsp;&nbsp;hope@prasm.life
+            Mae Hong Son, Thailand&nbsp;&nbsp;·&nbsp;&nbsp;{config.contact.email}
           </div>
         </div>
       </div>

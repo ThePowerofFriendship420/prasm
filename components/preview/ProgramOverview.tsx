@@ -31,7 +31,7 @@ const SectionTitle = ({
 );
 
 /**
- * A one-page program overview for foundation and donor conversations. Honest
+ * A one-page program overview for funder and donor conversations. Honest
  * about stage (a pilot in preparation, not a running service), dignity-first,
  * and safety as a precondition. With `printable` it shows a print toolbar and
  * prints as a clean single page; otherwise it renders as an embeddable card.
