@@ -36,7 +36,7 @@ Useful scripts:
 
 ```bash
 npm run build      # production build
-npm run typecheck  # tsc --noEmit
+npm run typecheck  # route types + tsc --noEmit
 npm run lint       # eslint
 npm run format     # prettier --write .
 ```
