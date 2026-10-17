@@ -15,6 +15,7 @@ import { Figure } from "@/components/Figure";
 import { CTASection } from "@/components/CTASection";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { SupporterAvatar } from "@/components/SupporterAvatar";
+import { SampleTag } from "@/components/SampleTag";
 import { images } from "@/lib/images";
 import {
   hero,
@@ -29,11 +30,13 @@ import {
 import { activePrograms } from "@/content/programs";
 import { stats } from "@/content/stats";
 import { getFeaturedFieldNote } from "@/content/fieldNotes";
-import { supporterTiers } from "@/content/supporters";
+import { visibleTiers } from "@/content/supporters";
+import { showSamples } from "@/lib/visibility";
 
 export default function HomePage() {
   const featured = getFeaturedFieldNote();
-  const featuredSupporters = supporterTiers
+  // Real supporters only on the live site; labelled samples on previews.
+  const featuredSupporters = visibleTiers(showSamples)
     .flatMap((t) => t.supporters)
     .slice(0, 8);
 
@@ -222,34 +225,37 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 10b. Our supporters */}
-      <Section tone="cream">
-        <SectionHeading
-          eyebrow="With gratitude"
-          title="Our supporters"
-          lede="PRASM runs on the generosity of a small circle of people. With thanks to the ones making this work possible."
-          align="center"
-          className="mx-auto"
-        />
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          {featuredSupporters.map((s, i) => (
-            <div
-              key={s.name + i}
-              className="inline-flex items-center gap-2.5 rounded-full border border-line bg-sand py-1.5 pr-4 pl-1.5"
-            >
-              <SupporterAvatar name={s.name} size="sm" />
-              <span className="text-sm font-medium text-forest-700">
-                {s.name}
-              </span>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 flex justify-center">
-          <Button href="/supporters" variant="outline">
-            See our supporters
-          </Button>
-        </div>
-      </Section>
+      {/* 10b. Our supporters (hidden until real, consented supporters exist) */}
+      {featuredSupporters.length > 0 && (
+        <Section tone="cream">
+          <SectionHeading
+            eyebrow="With gratitude"
+            title="Our supporters"
+            lede="PRASM runs on the generosity of a small circle of people. With thanks to the ones making this work possible."
+            align="center"
+            className="mx-auto"
+          />
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {featuredSupporters.map((s, i) => (
+              <div
+                key={s.name + i}
+                className="inline-flex items-center gap-2.5 rounded-full border border-line bg-sand py-1.5 pr-4 pl-1.5"
+              >
+                <SupporterAvatar name={s.name} size="sm" />
+                <span className="text-sm font-medium text-forest-700">
+                  {s.name}
+                </span>
+                {s.sample && <SampleTag />}
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 flex justify-center">
+            <Button href="/supporters" variant="outline">
+              See our supporters
+            </Button>
+          </div>
+        </Section>
+      )}
 
       {/* 11. Donate CTA band */}
       <CTASection

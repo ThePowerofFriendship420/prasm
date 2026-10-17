@@ -6,10 +6,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { CTASection } from "@/components/CTASection";
 import { SupporterAvatar } from "@/components/SupporterAvatar";
+import { SampleTag } from "@/components/SampleTag";
+import { showSamples } from "@/lib/visibility";
 import { buildMetadata } from "@/lib/metadata";
 import {
   supportersIntro,
-  supporterTiers,
+  visibleTiers,
   supportersOutro,
   type Supporter,
 } from "@/content/supporters";
@@ -21,7 +23,9 @@ export const metadata: Metadata = buildMetadata({
   path: "/supporters",
 });
 
-const byKey = (key: string) => supporterTiers.find((t) => t.key === key);
+// Real supporters only on the live site; labelled samples on previews.
+const tiers = visibleTiers(showSamples);
+const byKey = (key: string) => tiers.find((t) => t.key === key);
 
 /** Builds a short meta line like "Since 2024 · Seoul" from optional fields. */
 function meta(s: Supporter): string {
@@ -42,6 +46,22 @@ export default function SupportersPage() {
         title={supportersIntro.title}
         lede={supportersIntro.lede}
       />
+
+      {/* Before the first consented supporters are added */}
+      {tiers.length === 0 && (
+        <Section tone="cream">
+          <div className="mx-auto max-w-2xl rounded-[20px] border border-line bg-sand p-8 text-center md:p-10">
+            <h2 className="text-h3">
+              Our first supporters will be honoured here
+            </h2>
+            <p className="mt-3 text-stone">
+              We only list people who have said yes to being named. As our first
+              supporters give, and agree to be recognised, they will appear on
+              this page, by name, initials, or simply as Anonymous.
+            </p>
+          </div>
+        </Section>
+      )}
 
       {/* Founding Circle — lead supporters, featured */}
       {founding && (
@@ -66,6 +86,7 @@ export default function SupportersPage() {
                         {s.name}
                       </h3>
                       <Badge tone="gold">Founding Circle</Badge>
+                      {s.sample && <SampleTag />}
                     </div>
                     {meta(s) && (
                       <p className="mt-1 text-sm text-stone">{meta(s)}</p>
@@ -97,6 +118,7 @@ export default function SupportersPage() {
                       {s.name}
                     </h3>
                     <Badge tone="clay">Patron</Badge>
+                    {s.sample && <SampleTag />}
                   </div>
                   {meta(s) && (
                     <p className="mt-1 text-sm text-stone">{meta(s)}</p>
@@ -125,6 +147,7 @@ export default function SupportersPage() {
               >
                 <SupporterAvatar name={s.name} size="sm" />
                 <span className="font-medium text-forest-700">{s.name}</span>
+                {s.sample && <SampleTag />}
               </div>
             ))}
           </div>
