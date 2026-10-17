@@ -41,7 +41,13 @@ import { Avatar, card, usd, thb, roleTone } from "./ui";
 import { CuriosityPanel } from "./CuriosityPanel";
 import { SessionNotes } from "./SessionNotes";
 import { type Perspective } from "./CuriositySwitcher";
-import { useWallet } from "./walletStore";
+import { useWallet, approveWalletEntry } from "./walletStore";
+import {
+  useDecisions,
+  signOffExpense,
+  markCaptureReviewed,
+  effectiveSparkStatus,
+} from "./decisionsStore";
 import { walletTotals } from "@/content/stewardWallet";
 import { ScrollRow } from "./ScrollRow";
 import { useCuriosityLive } from "./curiosityStore";
@@ -92,8 +98,10 @@ export function AdminConsole({
   onSwitchPerspective?: (p: Perspective) => void;
 }) {
   const [tab, setTab] = useState<Tab>(initialTab);
-  const [signedOff, setSignedOff] = useState<Record<string, boolean>>({});
-  const [reviewed, setReviewed] = useState<Record<string, boolean>>({});
+  // Founder decisions persist across role switches (decisionsStore).
+  const decisions = useDecisions();
+  const signedOff = Object.fromEntries(decisions.signedOff.map((id) => [id, true]));
+  const reviewed = Object.fromEntries(decisions.reviewed.map((id) => [id, true]));
 
   // Add-member flow
   const [addOpen, setAddOpen] = useState(false);
@@ -141,7 +149,10 @@ export function AdminConsole({
   const needsItems: { tab: Tab; count: number; label: string }[] = [
     { tab: "approvals", count: pending.filter((e) => !signedOff[e.id]).length, label: "expenses to sign off" },
     { tab: "captures", count: pendingCaptures.filter((c) => !reviewed[c.id]).length, label: "field captures to review" },
-    { tab: "curiosity", count: [...seedSparks, ...live.sparks].filter((sp) => sp.status === "proposed").length, label: "sparks to approve" },
+    { tab: "curiosity", count: [
+        ...seedSparks.map((sp) => ({ status: effectiveSparkStatus(sp.id, sp.status, decisions) })),
+        ...live.sparks,
+      ].filter((sp) => sp.status === "proposed").length, label: "sparks to approve" },
     { tab: "finance", count: stewardLogged, label: "steward entries to sign off" },
   ];
   const needsYou = needsItems.filter((n) => n.count > 0);
@@ -468,7 +479,24 @@ export function AdminConsole({
                       <div className="font-display text-2xl text-clay-700 tabular-nums">{thb(stewardCash.outSum)}</div>
                     </div>
                   </div>
-                  <p className="mt-3 text-xs text-stone">Rolls up live from the steward&apos;s own cashbook, in their currency. Switch to the village steward, log money, and watch it appear here.</p>
+                  {stewardLogged > 0 && (
+                    <ul className="mt-4 divide-y divide-line rounded-[14px] border border-line">
+                      {walletEntries
+                        .filter((e) => e.direction === "out" && e.status === "logged")
+                        .map((e) => (
+                          <li key={e.id} className="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
+                            <div className="min-w-0">
+                              <div className="text-sm font-medium text-forest-700">
+                                {e.note || e.category} <span className="text-stone tabular-nums">· {thb(e.amount)}</span>
+                              </div>
+                              <div className="text-xs text-stone">{e.category} · {e.date}{e.receiptUrl ? " · receipt attached" : ""}</div>
+                            </div>
+                            <button type="button" onClick={() => approveWalletEntry(e.id)} className="inline-flex h-9 items-center justify-center rounded-[12px] bg-clay-600 px-4 text-sm font-medium text-cream transition-colors hover:bg-clay-700">Sign off</button>
+                          </li>
+                        ))}
+                    </ul>
+                  )}
+                  <p className="mt-3 text-xs text-stone">Rolls up live from the steward&apos;s own cashbook, in their currency. Switch to the village steward, log money, and watch it appear here for sign-off.</p>
                 </div>
                 <div className={`${card} overflow-hidden`}>
                 <div className="overflow-x-auto">
@@ -490,9 +518,9 @@ export function AdminConsole({
                           <td className="px-5 py-4 text-stone">{e.category}</td>
                           <td className="px-5 py-4 text-right font-medium text-forest-700 tabular-nums">{usd(e.amountUsd)}</td>
                           <td className="px-5 py-4">
-                            <Badge tone={e.status === "approved" ? "forest" : "gold"}>
-                              {e.status === "approved" && <CircleCheck className="h-3.5 w-3.5" aria-hidden />}
-                              {e.status}
+                            <Badge tone={e.status === "approved" || signedOff[e.id] ? "forest" : "gold"}>
+                              {(e.status === "approved" || signedOff[e.id]) && <CircleCheck className="h-3.5 w-3.5" aria-hidden />}
+                              {signedOff[e.id] ? "approved" : e.status}
                             </Badge>
                           </td>
                         </tr>
@@ -520,7 +548,7 @@ export function AdminConsole({
                     {signedOff[e.id] ? (
                       <Badge tone="forest"><CircleCheck className="h-3.5 w-3.5" aria-hidden />Signed off (demo)</Badge>
                     ) : (
-                      <button type="button" onClick={() => setSignedOff((s) => ({ ...s, [e.id]: true }))} className="inline-flex h-10 items-center justify-center rounded-[14px] bg-clay-600 px-5 text-sm font-medium text-cream shadow-soft transition-colors hover:bg-clay-700">Approve</button>
+                      <button type="button" onClick={() => signOffExpense(e.id)} className="inline-flex h-10 items-center justify-center rounded-[14px] bg-clay-600 px-5 text-sm font-medium text-cream shadow-soft transition-colors hover:bg-clay-700">Approve</button>
                     )}
                   </div>
                 ))}
@@ -546,7 +574,7 @@ export function AdminConsole({
                       {isApproved ? (
                         <Badge tone="forest"><CircleCheck className="h-3.5 w-3.5" aria-hidden />Reviewed</Badge>
                       ) : (
-                        <button type="button" onClick={() => setReviewed((s) => ({ ...s, [c.id]: true }))} className="inline-flex h-10 items-center justify-center rounded-[14px] bg-clay-600 px-5 text-sm font-medium text-cream shadow-soft transition-colors hover:bg-clay-700">Approve</button>
+                        <button type="button" onClick={() => markCaptureReviewed(c.id)} className="inline-flex h-10 items-center justify-center rounded-[14px] bg-clay-600 px-5 text-sm font-medium text-cream shadow-soft transition-colors hover:bg-clay-700">Approve</button>
                       )}
                     </div>
                   );

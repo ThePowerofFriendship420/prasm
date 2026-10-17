@@ -93,6 +93,16 @@ export function removeWalletEntry(id: string) {
   emit();
 }
 
+/** The founder signs off a logged spend: it moves to approved everywhere. */
+export function approveWalletEntry(id: string) {
+  snapshot();
+  entries = entries.map((e) =>
+    e.id === id && e.status === "logged" ? { ...e, status: "approved" } : e,
+  );
+  persist();
+  emit();
+}
+
 /** Wipe the cashbook back to the seed entries. */
 export function resetWallet() {
   for (const e of entries) revoke(e.receiptUrl);

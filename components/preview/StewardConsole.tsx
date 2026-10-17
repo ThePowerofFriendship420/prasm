@@ -41,6 +41,7 @@ import { useStudents, addStudent, type StudentRecord } from "./demoStore";
 import { StewardWallet } from "./StewardWallet";
 import { ScrollRow } from "./ScrollRow";
 import { StewardToday } from "./StewardToday";
+import { useDecisions, effectiveSparkStatus } from "./decisionsStore";
 import { useWallet } from "./walletStore";
 import { walletTotals } from "@/content/stewardWallet";
 
@@ -77,7 +78,12 @@ export function StewardConsole({
 }) {
   const [tab, setTab] = useState<Tab>("today");
   const students = useStudents();
-  const sparkList = seedSparks;
+  // The founder's approvals show up here as soon as they are made.
+  const decisions = useDecisions();
+  const sparkList = seedSparks.map((s) => ({
+    ...s,
+    status: effectiveSparkStatus(s.id, s.status, decisions),
+  }));
   const live = useCuriosityLive();
   const wallet = useWallet();
 
@@ -189,7 +195,9 @@ export function StewardConsole({
               <button
                 key={t.id}
                 type="button"
-                data-tour-id={t.id === "enroll" ? "steward-tab-enroll" : undefined}
+                data-tour-id={
+                  t.id === "enroll" ? "steward-tab-enroll" : undefined
+                }
                 onClick={() => setTab(t.id)}
                 aria-current={isActive ? "page" : undefined}
                 className={`inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${

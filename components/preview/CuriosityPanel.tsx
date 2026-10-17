@@ -25,6 +25,11 @@ import { Avatar, card, usd } from "./ui";
 import { CuriositySwitcher, type Perspective } from "./CuriositySwitcher";
 import { useCuriosityLive, setLiveSparkStatus } from "./curiosityStore";
 import { useStudents } from "./demoStore";
+import {
+  useDecisions,
+  approveSeedSpark,
+  effectiveSparkStatus,
+} from "./decisionsStore";
 import { GuideTip } from "./GuideTip";
 import { ownerSteps } from "@/content/onboarding";
 
@@ -33,7 +38,12 @@ export function CuriosityPanel({
 }: {
   onSwitch?: (p: Perspective) => void;
 }) {
-  const sparkList = seedSparks;
+  // Seed sparks with the founder's saved approvals applied.
+  const decisions = useDecisions();
+  const sparkList = seedSparks.map((s) => ({
+    ...s,
+    status: effectiveSparkStatus(s.id, s.status, decisions),
+  }));
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const [accessLog, setAccessLog] = useState<{ name: string; at: string }[]>(
     [],
@@ -263,6 +273,16 @@ export function CuriosityPanel({
                   </div>
                   <p className="mt-1 text-sm text-stone">{s.idea}</p>
                 </div>
+                {s.status === "proposed" && (
+                  <button
+                    type="button"
+                    onClick={() => approveSeedSpark(s.id)}
+                    className="inline-flex h-9 shrink-0 items-center gap-2 rounded-[12px] bg-clay-600 px-4 text-sm font-medium text-cream transition-colors hover:bg-clay-700"
+                  >
+                    <CircleCheck className="h-4 w-4" aria-hidden />
+                    Approve
+                  </button>
+                )}
               </div>
             );
           })}

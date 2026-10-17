@@ -25,6 +25,7 @@ import {
 } from "@/components/preview/demoStore";
 import { resetTour } from "@/components/preview/tourStore";
 import { resetWallet } from "@/components/preview/walletStore";
+import { resetDecisions } from "@/components/preview/decisionsStore";
 import { type Perspective } from "@/components/preview/CuriositySwitcher";
 import { resetCuriosityLive } from "@/components/preview/curiosityStore";
 import { card } from "@/components/preview/ui";
@@ -122,6 +123,7 @@ export function PreviewConsole() {
   const resetDemo = () => {
     resetDemoStudents();
     resetWallet();
+    resetDecisions();
     resetCuriosityLive();
     setActiveLearner(null);
     setView("login");
