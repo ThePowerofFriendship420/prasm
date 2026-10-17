@@ -5,7 +5,11 @@ export type FieldNoteBlock =
   | { type: "p"; text: string }
   | { type: "h"; text: string }
   | { type: "quote"; text: string; cite?: string }
-  | { type: "list"; items: string[] };
+  | { type: "list"; items: string[] }
+  /** A photo from lib/images.ts, full width within the text column. */
+  | { type: "image"; key: ImageKey; caption?: string }
+  /** Two to six photos in a grid, with one shared caption. */
+  | { type: "gallery"; keys: ImageKey[]; caption?: string };
 
 export type FieldNote = {
   slug: string;
