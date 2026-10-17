@@ -15,6 +15,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { FAQ } from "@/components/FAQ";
+import { GiveFlow } from "@/components/GiveFlow";
 import { Quote } from "@/components/Quote";
 import {
   DonateLinkCard,
@@ -70,12 +71,24 @@ export default async function GivePage() {
         image="villageDawn"
       />
 
-      {/* Monetary methods */}
-      <Section tone="cream">
+      {/* The giving flow: amount, frequency, fund, then pay or pledge */}
+      <Section tone="cream" id="give">
         <SectionHeading
-          eyebrow="Give money"
-          title="Pick a method"
-          lede="One-time or recurring, whatever suits you."
+          eyebrow="Make a gift"
+          title="Choose your gift"
+          lede="Pick how often, how much, and where it goes. It takes a minute."
+        />
+        <div className="mt-10">
+          <GiveFlow />
+        </div>
+      </Section>
+
+      {/* Monetary methods */}
+      <Section tone="sand">
+        <SectionHeading
+          eyebrow="Other ways"
+          title="Give directly by method"
+          lede="Prefer a specific platform? Every method reaches the same place."
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {visibleLinks.map((m, i) => (
@@ -98,7 +111,7 @@ export default async function GivePage() {
       {(visibleCrypto.length > 0 ||
         config.cryptoProcessor.enabled ||
         config.showPlaceholders) && (
-        <Section tone="sand">
+        <Section tone="cream">
           <SectionHeading
             eyebrow="Give crypto"
             title="Donate with cryptocurrency"
@@ -161,7 +174,7 @@ export default async function GivePage() {
       )}
 
       {/* In-kind */}
-      <Section tone="cream">
+      <Section tone="sand">
         <div className="grid gap-10 lg:grid-cols-[2fr_3fr] lg:gap-16">
           <SectionHeading
             eyebrow="Give in kind"
@@ -193,7 +206,7 @@ export default async function GivePage() {
 
       {/* Bank transfer and Western Union: contact-first, only when configured */}
       {(config.bankTransfer.enabled || config.westernUnion.enabled) && (
-        <Section tone="sand">
+        <Section tone="cream">
           <SectionHeading
             eyebrow="Send money directly"
             title="Bank transfer and Western Union"
@@ -223,7 +236,7 @@ export default async function GivePage() {
       )}
 
       {/* Where it goes, and why you can trust it */}
-      <Section tone="cream">
+      <Section tone="sand">
         <SectionHeading
           eyebrow="Trust"
           title="Where it goes, and why you can trust it"
@@ -282,7 +295,7 @@ export default async function GivePage() {
       </Section>
 
       {/* FAQ */}
-      <Section tone="sand">
+      <Section tone="cream">
         <SectionHeading eyebrow="Good to know" title="Questions about giving" />
         <div className="mt-10 max-w-3xl">
           <FAQ items={giveFaqs} />

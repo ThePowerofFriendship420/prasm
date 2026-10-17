@@ -1,15 +1,24 @@
 /**
- * Impact stats. VALUES ARE PLACEHOLDERS — replace with real, defensible
- * numbers before launch (see plan §12). Framed as what the community is
- * building, not as a measure of brokenness.
+ * Impact stats, framed as what the community is building, not as a measure of
+ * brokenness.
+ *
+ * Honest by construction: a stat marked `placeholder: true` never renders on
+ * the live site (see components/StatCard.tsx and lib/visibility.ts). Previews
+ * show it with a Sample label. To publish a real figure, replace the value,
+ * remove `placeholder`, and add `asOf` (e.g. "Oct 2026") and `source`
+ * (e.g. "PRASM medical records").
  */
 
 export type Stat = {
   value: string;
   label: string;
   caption?: string;
-  /** PLACEHOLDER until verified. */
+  /** Not yet verified: hidden on the live site, labelled on previews. */
   placeholder?: boolean;
+  /** When the figure was counted, e.g. "Oct 2026". */
+  asOf?: string;
+  /** Where it comes from, e.g. "PRASM medical records". */
+  source?: string;
 };
 
 export const stats: Stat[] = [

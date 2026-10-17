@@ -41,8 +41,10 @@ import { useStudents, addStudent, type StudentRecord } from "./demoStore";
 import { StewardWallet } from "./StewardWallet";
 import { ScrollRow } from "./ScrollRow";
 import { StewardToday } from "./StewardToday";
+import { useDecisions, effectiveSparkStatus } from "./decisionsStore";
 import { useWallet } from "./walletStore";
 import { walletTotals } from "@/content/stewardWallet";
+import { useRequestedTab } from "./demoNav";
 
 type Tab =
   | "today"
@@ -62,6 +64,7 @@ const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
   { id: "money", label: "Money", icon: Wallet },
   { id: "pay", label: "How I'm paid", icon: HeartHandshake },
 ];
+const TAB_IDS = tabs.map((t) => t.id);
 
 const consentTone = (c: Learner["consent"]) =>
   c === "given" ? "forest" : c === "pending" ? "gold" : "neutral";
@@ -76,8 +79,14 @@ export function StewardConsole({
   onSwitch?: (p: Perspective) => void;
 }) {
   const [tab, setTab] = useState<Tab>("today");
+  useRequestedTab(TAB_IDS, setTab);
   const students = useStudents();
-  const sparkList = seedSparks;
+  // The founder's approvals show up here as soon as they are made.
+  const decisions = useDecisions();
+  const sparkList = seedSparks.map((s) => ({
+    ...s,
+    status: effectiveSparkStatus(s.id, s.status, decisions),
+  }));
   const live = useCuriosityLive();
   const wallet = useWallet();
 
@@ -189,7 +198,9 @@ export function StewardConsole({
               <button
                 key={t.id}
                 type="button"
-                data-tour-id={t.id === "enroll" ? "steward-tab-enroll" : undefined}
+                data-tour-id={
+                  t.id === "enroll" ? "steward-tab-enroll" : undefined
+                }
                 onClick={() => setTab(t.id)}
                 aria-current={isActive ? "page" : undefined}
                 className={`inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${

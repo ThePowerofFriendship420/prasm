@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "draft": "tsx scripts/field-to-story/run.ts",
     "grant": "tsx scripts/grants/run.ts",
@@ -22,7 +22,9 @@
     "team:check": "tsx scripts/team/check.ts",
     "team:roster": "tsx scripts/team/roster.ts",
     "photos:add": "tsx scripts/photos/add.ts",
-    "photos:check": "tsx scripts/photos/check.ts"
+    "photos:check": "tsx scripts/photos/check.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "ci": "npm run lint && npm run typecheck && npm test && npm run photos:check && npm run storybank:lint"
   },
   "engines": {
     "node": ">=20.9 <23"

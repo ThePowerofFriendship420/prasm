@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { FieldNoteBody } from "@/components/FieldNoteBody";
 import { CTASection } from "@/components/CTASection";
 import { buildMetadata } from "@/lib/metadata";
-import { images } from "@/lib/images";
+import { images, type MediaRef } from "@/lib/images";
 import {
   getAllFieldNotes,
   getFieldNote,
@@ -25,10 +25,18 @@ export async function generateMetadata(
   const { slug } = await props.params;
   const note = getFieldNote(slug);
   if (!note) return {};
+  // Use the note's own photo as its social preview only when nobody in it is
+  // identifiable or consent is cleared: shared links travel far beyond the site.
+  const hero: MediaRef = images[note.heroImage];
+  const shareable =
+    !hero.placeholder &&
+    (hero.consent === "not-needed" || hero.consent === "cleared");
   return buildMetadata({
     title: note.title,
     description: note.excerpt,
     path: `/field-notes/${note.slug}`,
+    image: shareable ? { src: hero.src, alt: hero.alt } : undefined,
+    article: { publishedTime: note.date },
   });
 }
 
@@ -60,8 +68,8 @@ export default async function FieldNotePage(
               {note.displayDate}
             </time>
           </div>
-          <h1 className="text-h1 mt-4">{note.title}</h1>
-          <p className="text-lede mt-5 text-stone">{note.excerpt}</p>
+          <h1 className="mt-4 text-h1">{note.title}</h1>
+          <p className="mt-5 text-lede text-stone">{note.excerpt}</p>
         </Container>
 
         {/* Hero image */}

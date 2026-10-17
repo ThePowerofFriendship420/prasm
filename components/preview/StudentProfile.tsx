@@ -34,6 +34,7 @@ import {
 import { LanguageCenter } from "./LanguageCenter";
 import { toast } from "./toast";
 import { ScrollRow } from "./ScrollRow";
+import { useRequestedTab } from "./demoNav";
 
 type Tab = "me" | "health" | "learn";
 
@@ -42,6 +43,7 @@ const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
   { id: "health", label: "Health", icon: HeartPulse },
   { id: "learn", label: "Learn", icon: GraduationCap },
 ];
+const TAB_IDS = tabs.map((t) => t.id);
 
 const medicalIcons: Record<MedicalKind, React.ElementType> = {
   allergy: TriangleAlert,
@@ -75,6 +77,7 @@ export function StudentProfile({
   onOpenCuriosity?: () => void;
 }) {
   const [tab, setTab] = useState<Tab>("me");
+  useRequestedTab(TAB_IDS, setTab);
   const [avatar, setAvatar] = useState(demoStudent.avatar);
   const [pickAvatar, setPickAvatar] = useState(false);
   const [name, setName] = useState(demoStudent.explorerName);
@@ -315,7 +318,7 @@ export function StudentProfile({
 
         {/* HEALTH */}
         {tab === "health" && (
-          <div className="mt-5 space-y-4">
+          <div className="mt-5 space-y-4" data-tour-id="student-health">
             <div className="flex items-start gap-2 rounded-[14px] bg-clay-50 px-4 py-3 text-sm text-clay-700 ring-1 ring-clay-100 ring-inset">
               <Lock className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
               <p>

@@ -19,6 +19,17 @@ export const note: FieldNote = {
       text: "They grow plants and raise chickens and pigs as sustainable food. They even weave their own fabric by hand. I think many of us have forgotten this kind of life.",
     },
     {
+      type: "gallery",
+      keys: [
+        "villageFirewood",
+        "villageAnimals",
+        "villageSteps",
+        "villageGarden",
+      ],
+      caption:
+        "Everyday life in the hills: firewood stacked for the kitchen fire, pigs in their pen, stone steps between the homes, and a hen with her chicks.",
+    },
+    {
       type: "h",
       text: "Sun and water",
     },

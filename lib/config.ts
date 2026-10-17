@@ -9,9 +9,11 @@ export const PRIMARY_DONATE_HREF = "/give";
 
 const isProd = process.env.NODE_ENV === "production";
 
-function env(key: string): string {
-  return (process.env[key] ?? "").trim();
-}
+// Each NEXT_PUBLIC_ value is read with a literal `process.env.NAME` so Next
+// inlines it into browser code too. A lookup by variable name
+// (process.env[key]) is NOT inlined and comes back empty in client components
+// (node_modules/next/dist/docs/01-app/02-guides/environment-variables.md).
+const clean = (v: string | undefined): string => (v ?? "").trim();
 
 export type LinkMethod = {
   key: "patreon" | "stripe" | "paypal";
@@ -27,38 +29,45 @@ export type CryptoMethod = {
   enabled: boolean;
 };
 
-const patreon = env("NEXT_PUBLIC_PATREON_URL");
-const stripe = env("NEXT_PUBLIC_STRIPE_PAYMENT_LINK");
-const paypal = env("NEXT_PUBLIC_PAYPAL_ME");
+const patreon = clean(process.env.NEXT_PUBLIC_PATREON_URL);
+const stripe = clean(process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK);
+const stripeMonthly = clean(process.env.NEXT_PUBLIC_STRIPE_MONTHLY_LINK);
+const paypal = clean(process.env.NEXT_PUBLIC_PAYPAL_ME);
 
-const btc = env("NEXT_PUBLIC_CRYPTO_BTC_ADDRESS");
-const eth = env("NEXT_PUBLIC_CRYPTO_ETH_ADDRESS");
-const usdt = env("NEXT_PUBLIC_CRYPTO_USDT_ADDRESS");
-const usdtNetwork = env("NEXT_PUBLIC_CRYPTO_USDT_NETWORK") || "TRC20";
+const btc = clean(process.env.NEXT_PUBLIC_CRYPTO_BTC_ADDRESS);
+const eth = clean(process.env.NEXT_PUBLIC_CRYPTO_ETH_ADDRESS);
+const usdt = clean(process.env.NEXT_PUBLIC_CRYPTO_USDT_ADDRESS);
+const usdtNetwork =
+  clean(process.env.NEXT_PUBLIC_CRYPTO_USDT_NETWORK) || "TRC20";
 
-const wuName = env("NEXT_PUBLIC_WU_RECIPIENT_NAME");
-const wuLocation = env("NEXT_PUBLIC_WU_RECIPIENT_LOCATION");
+const wuName = clean(process.env.NEXT_PUBLIC_WU_RECIPIENT_NAME);
+const wuLocation = clean(process.env.NEXT_PUBLIC_WU_RECIPIENT_LOCATION);
 
 // Optional hosted crypto-donation page (The Giving Block / Engiven / Coinbase
 // Commerce): auto-converts to fiat and issues receipts. Just a URL.
-const cryptoProcessorUrl = env("NEXT_PUBLIC_CRYPTO_PROCESSOR_URL");
+const cryptoProcessorUrl = clean(process.env.NEXT_PUBLIC_CRYPTO_PROCESSOR_URL);
 const cryptoProcessorName =
-  env("NEXT_PUBLIC_CRYPTO_PROCESSOR_NAME") || "our crypto donation page";
+  clean(process.env.NEXT_PUBLIC_CRYPTO_PROCESSOR_NAME) ||
+  "our crypto donation page";
 
 // Bank transfer / wire is contact-first (we never publish account numbers), so
 // it is a simple on/off flag rather than public values.
-const bankTransferFlag = env("NEXT_PUBLIC_BANK_TRANSFER").toLowerCase();
+const bankTransferFlag = clean(
+  process.env.NEXT_PUBLIC_BANK_TRANSFER,
+).toLowerCase();
 
 // Pre-launch preview: when on, donation methods that are not configured yet show
 // a finished-looking demo whose final step is an honest "coming soon" (no real
 // or sendable wallet address is ever shown). A method that IS configured always
 // uses its real action, so going live is automatic, per method. Default on; set
 // NEXT_PUBLIC_DONATIONS_PREVIEW=false to hide unconfigured methods instead.
-const donationsPreview = env("NEXT_PUBLIC_DONATIONS_PREVIEW") !== "false";
+const donationsPreview =
+  clean(process.env.NEXT_PUBLIC_DONATIONS_PREVIEW) !== "false";
 
 // Floating team login + the /preview internal demo. Default on; set
 // NEXT_PUBLIC_INTERNAL_PREVIEW=false to hide.
-const internalPreview = env("NEXT_PUBLIC_INTERNAL_PREVIEW") !== "false";
+const internalPreview =
+  clean(process.env.NEXT_PUBLIC_INTERNAL_PREVIEW) !== "false";
 
 export const config = {
   /** Show placeholder cards for unconfigured methods only outside production. */
@@ -75,6 +84,9 @@ export const config = {
     stripe: { key: "stripe", url: stripe, enabled: !!stripe },
     paypal: { key: "paypal", url: paypal, enabled: !!paypal },
   } satisfies Record<LinkMethod["key"], LinkMethod>,
+
+  /** Optional Stripe Payment Link for monthly gifts (the main link is one-time). */
+  stripeMonthly: { url: stripeMonthly, enabled: !!stripeMonthly },
 
   crypto: [
     {
@@ -119,8 +131,8 @@ export const config = {
   contact: {
     // Fixed in code on purpose, so a stale hosting env var can never show an old inbox.
     email: "prasmlife@gmail.com",
-    formspree: env("NEXT_PUBLIC_FORMSPREE_ENDPOINT"),
-    newsletterAction: env("NEXT_PUBLIC_NEWSLETTER_ACTION"),
+    formspree: clean(process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT),
+    newsletterAction: clean(process.env.NEXT_PUBLIC_NEWSLETTER_ACTION),
   },
 } as const;
 

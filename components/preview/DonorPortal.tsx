@@ -36,6 +36,7 @@ import {
 } from "@/content/donor";
 import { toast } from "./toast";
 import { ScrollRow } from "./ScrollRow";
+import { useRequestedTab } from "./demoNav";
 
 type Tab = "overview" | "giving" | "documents";
 
@@ -44,6 +45,7 @@ const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
   { id: "giving", label: "Giving", icon: HandCoins },
   { id: "documents", label: "Documents", icon: FileText },
 ];
+const TAB_IDS = tabs.map((t) => t.id);
 
 const slotIcons: Record<string, React.ElementType> = {
   education: GraduationCap,
@@ -133,6 +135,7 @@ function impactText() {
  */
 export function DonorPortal({ onSignOut }: { onSignOut: () => void }) {
   const [tab, setTab] = useState<Tab>("overview");
+  useRequestedTab(TAB_IDS, setTab);
   const [name, setName] = useState(demoDonor.name);
   const [editName, setEditName] = useState(false);
   const [anonymous, setAnonymous] = useState(demoDonor.anonymous);
@@ -298,7 +301,7 @@ export function DonorPortal({ onSignOut }: { onSignOut: () => void }) {
         {/* OVERVIEW */}
         {tab === "overview" && (
           <div className="mt-5 space-y-4">
-            <div className={`${card} p-5`}>
+            <div className={`${card} p-5`} data-tour-id="donor-funds">
               <h2 className="font-display text-lg font-semibold text-forest-700">
                 Where your giving goes
               </h2>
@@ -335,7 +338,7 @@ export function DonorPortal({ onSignOut }: { onSignOut: () => void }) {
               </ul>
             </div>
 
-            <div className={`${card} p-5`}>
+            <div className={`${card} p-5`} data-tour-id="donor-impact">
               <h2 className="font-display text-lg font-semibold text-forest-700">
                 The difference, together
               </h2>
