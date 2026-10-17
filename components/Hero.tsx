@@ -65,7 +65,7 @@ export function Hero({
           <Figure
             media={image}
             rounded="none"
-            priority
+            preload
             sizes="100vw"
             className="h-full"
           />

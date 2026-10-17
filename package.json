@@ -20,7 +20,9 @@
     "finance:check": "tsx scripts/finance/check.ts",
     "finance:report": "tsx scripts/finance/report.ts",
     "team:check": "tsx scripts/team/check.ts",
-    "team:roster": "tsx scripts/team/roster.ts"
+    "team:roster": "tsx scripts/team/roster.ts",
+    "photos:add": "tsx scripts/photos/add.ts",
+    "photos:check": "tsx scripts/photos/check.ts"
   },
   "engines": {
     "node": ">=20.9 <23"
@@ -48,6 +50,7 @@
     "eslint-config-next": "16.2.6",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"

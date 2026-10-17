@@ -52,3 +52,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# photos — camera originals are private (location data, full-size faces); see lib/images.ts
+/media-originals/
+/IMG*.jpg
+*.heic
+*.HEIC

@@ -7,6 +7,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ProgramCard } from "@/components/ProgramCard";
 import { CTASection } from "@/components/CTASection";
+import { Figure } from "@/components/Figure";
+import { images } from "@/lib/images";
 import { buildMetadata } from "@/lib/metadata";
 import { programsIntro, activePrograms, roadmap } from "@/content/programs";
 
@@ -24,6 +26,7 @@ export default function ProgramsPage() {
         eyebrow={programsIntro.eyebrow}
         title={programsIntro.title}
         lede={programsIntro.lede}
+        image="forestCanopy"
       />
 
       {/* Active programs — detailed */}
@@ -32,7 +35,7 @@ export default function ProgramsPage() {
           {activePrograms.map((program) => (
             <Reveal key={program.slug}>
               <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-12">
-                <div>
+                <div className="lg:sticky lg:top-24 lg:self-start">
                   <ProgramCard
                     icon={program.icon}
                     title={program.title}
@@ -45,6 +48,13 @@ export default function ProgramsPage() {
                       <p key={j}>{para}</p>
                     ))}
                   </div>
+                  {program.image && (
+                    <Figure
+                      media={images[program.image]}
+                      className="mt-8 max-w-md"
+                      sizes="(min-width: 1024px) 28rem, 100vw"
+                    />
+                  )}
                 </div>
               </div>
             </Reveal>

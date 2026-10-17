@@ -29,6 +29,7 @@ export default function TransparencyPage() {
         eyebrow={transparencyIntro.eyebrow}
         title={transparencyIntro.title}
         lede={transparencyIntro.lede}
+        image="villagePath"
       />
 
       {/* How we operate */}

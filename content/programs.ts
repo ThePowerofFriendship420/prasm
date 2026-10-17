@@ -63,6 +63,7 @@ export const activePrograms: Program[] = [
       "PRASM helps maintain and extend this infrastructure (more solar, better water access, tools) so self-reliance grows rather than dependence.",
     ],
     status: "active",
+    image: "villageFirewood",
   },
   {
     slug: "in-kind",

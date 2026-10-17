@@ -1,67 +1,72 @@
-# Swapping placeholder images for real photos
+# Adding photos to the site
 
 Every image on the site is registered in [`lib/images.ts`](../../../lib/images.ts)
-as a `MediaRef`. While `placeholder: true`, the `<Figure>` component renders a
-branded gradient slot with the intended-photo description shown as a label.
+with what it shows and whether it may be published. Two commands keep this safe.
 
-## To add a real photo
+## Add a photo
 
-1. **Drop the file** at the `src` path declared in `lib/images.ts`.
-   Example: for `heroMain` with `src: "/images/hero/main.jpg"`, save your file to
-   `public/images/hero/main.jpg`.
-2. **Keep or refine the `alt`** text — it matters for accessibility and SEO.
-   Write what is actually in the photo.
-3. **Set `placeholder: false`** on that entry.
+1. **Put the camera original in `media-originals/`** at the project root. That
+   folder is git-ignored: originals carry GPS location and full-size faces, so
+   they never go in the repo. Keep your own copy somewhere private too (phone,
+   private Drive folder).
+2. **Process it:**
 
-That's it — `<Figure>` automatically switches to an optimized `next/image`
-(AVIF/WebP, responsive, lazy-loaded). The hero image is the only one marked
-`priority`.
+   ```bash
+   npm run photos:add -- media-originals/IMG_1234.jpg village/path
+   ```
 
-## Guidelines
+   This turns it upright, strips **all** hidden metadata (GPS, camera,
+   timestamps), resizes it to 2000px on the long edge, compresses it under
+   650 KB and saves it to `public/images/village/path.jpg`. It prints an entry
+   to paste into `lib/images.ts`.
 
-- **Consent first.** Do not publish identifiable photos of people — especially
-  children, wounded individuals, or anyone vulnerable — without explicit,
-  informed consent. When in doubt, leave the placeholder.
-- **Dignity over pity.** Choose images that show agency, community, and
-  everyday life — not suffering as spectacle.
-- **Safety.** Avoid images or captions that reveal the village's exact location.
-- Prefer landscape JP/WebP at ~2000px on the long edge; the component handles
-  resizing and cropping (`object-cover`).
+3. **Fill in the entry honestly:** an `alt` that says exactly what is in the
+   photo, then `people` and `consent`:
+
+   | `people`       | Meaning                                 | `consent`                          |
+   | -------------- | --------------------------------------- | ---------------------------------- |
+   | `none`         | No people                               | `not-needed`                       |
+   | `incidental`   | People too small or turned away to know | `not-needed`                       |
+   | `identifiable` | Someone could be recognised             | `pending`, `cleared` or `withheld` |
+
+   Set `children: true` whenever a child appears.
+
+4. **Check it:** `npm run photos:check`
+
+## What the check enforces
+
+`npm run photos:check` fails if:
+
+- any image under `public/` still carries hidden metadata (where GPS lives)
+- any site photo is over 700 KB or over 2400px (a raw original slipped in)
+- a camera original (`IMG*.jpg`, `.heic`) is tracked in git, or anything in
+  `media-originals/` is
+- an entry points at a missing file, or `people` and `consent` contradict each
+  other
+
+It warns, on every run, about identifiable photos still `pending` a consent
+decision, and about files nothing points at.
+
+On the live site, `<Figure>` never shows a photo marked `withheld`; the slot
+falls back to a branded placeholder. Previews still show it, labelled, so it
+can be reviewed.
+
+## Rules for every photo
+
+- **Consent first.** Identifiable people, above all children, wounded or
+  vulnerable people, need informed agreement (for children, their family's).
+  When in doubt, `withheld`.
+- **Dignity over pity.** Agency, community and everyday life, never suffering
+  as spectacle.
+- **Never locate the village.** No signs, boards or landmarks that name or
+  pin down the village. The metadata is stripped automatically; what is
+  _in_ the picture is up to you.
 
 ## Folder map
 
-| Folder                 | Used by                          |
-| ---------------------- | -------------------------------- |
-| `hero/`                | Home hero                        |
-| `village/`             | Daily life, weaving, gardens, solar, water, woodfire |
-| `founder/`             | Founder portrait                 |
-| `the-need/`            | The Need page                    |
-| `programs/`            | Programs page                    |
-| `field-notes/`         | Field note hero images           |
-
-## Status & future upgrade: add more photos later
-
-As of June 2026, every registered slot shows a **real photo** of the village:
-`heroMain`, `villageLife`, `villageGarden`, `villageWoodfire`, `villageStreet`,
-`villageHomes`, `villageAnimals`, `villageLane`, `villageDusk`,
-`villageGathering`, `founderPortrait`, `needWar`, and `programsMedical`.
-
-No branded placeholders remain. The earlier `villageWeaving`, `villageSolar`,
-and `villageWater` slots were renamed to `villageGathering`, `villageDusk`, and
-`villageLane` because the photo set had no weaving / solar / water-collection
-shots; each now points at a real, accurately described village photo.
-
-A larger set of the founder's source photos is in the repo (`IMG2026*.jpg`
-at the project root) and in git history: community gatherings, more village
-scenes, signage, and a hospital visit. Only ~8 of ~50 are in use. To add
-more later:
-
-1. Pick a photo; resize to ~2000px on the long edge and save it under the
-   right `public/images/...` path (see the folder map above).
-2. Point the matching `lib/images.ts` entry at it (or add a new key), set
-   `placeholder: false`, and write an accurate `alt`.
-3. Optional: surface extra photos by adding keys to a `<PhotoStrip>` or a
-   new gallery section (e.g. on The Need, Programs, or Get Involved).
-
-The consent, dignity, and location-safety rules above apply to every photo
-added.
+| Folder      | Used by                                    |
+| ----------- | ------------------------------------------ |
+| `village/`  | Home photo strip, page heroes, field notes |
+| `founder/`  | Home and About                             |
+| `the-need/` | The Need page                              |
+| `programs/` | Programs, About, Founder                   |

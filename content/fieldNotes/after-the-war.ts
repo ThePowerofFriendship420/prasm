@@ -10,7 +10,7 @@ export const note: FieldNote = {
   tag: "The village",
   excerpt:
     "On the way to the village we stopped at a ward of wounded patients. The cost of the conflict is written on the people who survived it, and on the children left behind.",
-  heroImage: "villageLife",
+  heroImage: "villageDawn",
   body: [
     {
       type: "p",

@@ -39,6 +39,7 @@ export default function GetInvolvedPage() {
         eyebrow={getInvolvedIntro.eyebrow}
         title={getInvolvedIntro.title}
         lede={getInvolvedIntro.lede}
+        image="villageSteps"
       />
 
       <Section tone="cream">

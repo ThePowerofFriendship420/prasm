@@ -67,6 +67,7 @@ export default async function GivePage() {
         eyebrow="Ways to give"
         title="Every gift, in any form, is dignity returned"
         lede="Choose whatever works best for you. Card, PayPal, Patreon, crypto, or supplies in kind: it all reaches the community directly."
+        image="villageDawn"
       />
 
       {/* Monetary methods */}
