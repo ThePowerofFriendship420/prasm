@@ -80,7 +80,10 @@ recruitment, risk register, audits) live under [`docs/`](docs).
 ## How changes go live
 
 1. Work happens on a branch and opens a pull request into `main`.
-2. Vercel posts a preview link on the pull request. Check it there.
+2. Vercel posts a preview link on the pull request, and GitHub runs the checks
+   (lint, types, tests, photo safety, story bank, build). Check the preview;
+   merge only when the checks are green. Run the same gate locally with
+   `npm run ci`.
 3. Merge into `main`. Vercel deploys `main` to www.prasm.life automatically.
 
 `main` is the only production branch. Don't merge into other branches.
