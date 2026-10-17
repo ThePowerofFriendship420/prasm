@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
-import type { MediaRef } from "@/lib/images";
+import { isPublishable, type MediaRef } from "@/lib/images";
 
 type FigureProps = {
   media: MediaRef;
   className?: string;
-  /** Pass true on the LCP hero image only. */
-  priority?: boolean;
+  /** Pass true on the LCP hero image only (Next 16 replaced `priority`). */
+  preload?: boolean;
   /** Responsive sizes hint for next/image. */
   sizes?: string;
   /** Rounded corners (default lg). */
@@ -26,16 +26,24 @@ const roundedMap = {
  * The core image swap point. Renders an optimized next/image once a real
  * file is in place; until then (media.placeholder === true) it shows a
  * branded gradient slot with the intended-photo description visible.
+ *
+ * Consent gate: a photo of identifiable people marked "withheld" in
+ * lib/images.ts never renders on the live site; the slot falls back to the
+ * placeholder. Previews still show it, labelled, so the founder can review.
  */
 export function Figure({
   media,
   className,
-  priority,
+  preload,
   sizes = "100vw",
   rounded = "lg",
-  caption,
+  caption = media.caption,
 }: FigureProps) {
   const ratio = media.ratio ?? "16/10";
+  const isProd = process.env.VERCEL_ENV
+    ? process.env.VERCEL_ENV === "production"
+    : process.env.NODE_ENV === "production";
+  const withheld = !isPublishable(media);
 
   const frame = cn(
     "relative w-full overflow-hidden bg-sand",
@@ -43,7 +51,7 @@ export function Figure({
     className,
   );
 
-  if (media.placeholder) {
+  if (media.placeholder || (withheld && isProd)) {
     return (
       <figure className={frame} style={{ aspectRatio: ratio }}>
         {/* Decorative warm gradient stands in for the photo */}
@@ -75,9 +83,15 @@ export function Figure({
         alt={media.alt}
         fill
         sizes={sizes}
-        priority={priority}
+        preload={preload}
         className="object-cover"
+        style={media.focal ? { objectPosition: media.focal } : undefined}
       />
+      {withheld && (
+        <span className="absolute top-3 left-3 rounded-full bg-clay-600 px-3 py-1 text-xs font-semibold text-cream">
+          Consent withheld · hidden on the live site
+        </span>
+      )}
       {caption && (
         <figcaption className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-forest-700/70 to-transparent p-4 text-sm text-cream">
           {caption}

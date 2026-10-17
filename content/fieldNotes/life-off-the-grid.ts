@@ -8,7 +8,7 @@ export const note: FieldNote = {
   tag: "The village",
   excerpt:
     "No TV, no microwave, no freezer. Solar panels pump the water, wood fire cooks the food, and fabric is woven by hand. A community living lightly, and worth protecting.",
-  heroImage: "villageLife",
+  heroImage: "villagePath",
   body: [
     {
       type: "p",
