@@ -44,6 +44,7 @@ import { StewardToday } from "./StewardToday";
 import { useDecisions, effectiveSparkStatus } from "./decisionsStore";
 import { useWallet } from "./walletStore";
 import { walletTotals } from "@/content/stewardWallet";
+import { useRequestedTab } from "./demoNav";
 
 type Tab =
   | "today"
@@ -63,6 +64,7 @@ const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
   { id: "money", label: "Money", icon: Wallet },
   { id: "pay", label: "How I'm paid", icon: HeartHandshake },
 ];
+const TAB_IDS = tabs.map((t) => t.id);
 
 const consentTone = (c: Learner["consent"]) =>
   c === "given" ? "forest" : c === "pending" ? "gold" : "neutral";
@@ -77,6 +79,7 @@ export function StewardConsole({
   onSwitch?: (p: Perspective) => void;
 }) {
   const [tab, setTab] = useState<Tab>("today");
+  useRequestedTab(TAB_IDS, setTab);
   const students = useStudents();
   // The founder's approvals show up here as soon as they are made.
   const decisions = useDecisions();

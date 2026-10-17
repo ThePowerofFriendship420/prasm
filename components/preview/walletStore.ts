@@ -1,7 +1,11 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { stewardWalletSeed, type WalletEntry } from "@/content/stewardWallet";
+import {
+  stewardWalletSeed,
+  GIFT_STORY_ENTRY,
+  type WalletEntry,
+} from "@/content/stewardWallet";
 
 /**
  * The village steward's cashbook, persisted so logged money survives switching
@@ -99,6 +103,20 @@ export function approveWalletEntry(id: string) {
   entries = entries.map((e) =>
     e.id === id && e.status === "logged" ? { ...e, status: "approved" } : e,
   );
+  persist();
+  emit();
+}
+
+/**
+ * Put the "Follow a gift" hospital trip in the cashbook, awaiting sign-off,
+ * so the story can be replayed (and works for cashbooks saved before it).
+ */
+export function prepareGiftStoryEntry() {
+  snapshot();
+  const fresh = { ...GIFT_STORY_ENTRY };
+  entries = entries.some((e) => e.id === fresh.id)
+    ? entries.map((e) => (e.id === fresh.id ? fresh : e))
+    : [fresh, ...entries];
   persist();
   emit();
 }

@@ -52,6 +52,7 @@ import { walletTotals } from "@/content/stewardWallet";
 import { ScrollRow } from "./ScrollRow";
 import { useCuriosityLive } from "./curiosityStore";
 import { sparks as seedSparks } from "@/content/curiosityDemo";
+import { useRequestedTab } from "./demoNav";
 
 type Tab =
   | "overview"
@@ -72,6 +73,7 @@ const tabs: { id: Tab; label: string; icon: React.ElementType; blurb: string }[]
   { id: "curiosity", label: "Curiosity Program", icon: Sprout, blurb: "The village AI-literacy program: who is learning, how often they come back, the spark-fund follow-through, and the two-layer privacy model. Engagement is what we reward, never a head count." },
   { id: "boardroom", label: "Boardroom", icon: Landmark, blurb: "The internal space to come back to: goals, the story so far, and governance decisions to revisit and discuss together." },
 ];
+const TAB_IDS = tabs.map((t) => t.id);
 
 const captureIcon: Record<DemoCapture["kind"], React.ElementType> = {
   note: FileText,
@@ -98,6 +100,7 @@ export function AdminConsole({
   onSwitchPerspective?: (p: Perspective) => void;
 }) {
   const [tab, setTab] = useState<Tab>(initialTab);
+  useRequestedTab(TAB_IDS, setTab);
   // Founder decisions persist across role switches (decisionsStore).
   const decisions = useDecisions();
   const signedOff = Object.fromEntries(decisions.signedOff.map((id) => [id, true]));
@@ -491,7 +494,7 @@ export function AdminConsole({
                               </div>
                               <div className="text-xs text-stone">{e.category} · {e.date}{e.receiptUrl ? " · receipt attached" : ""}</div>
                             </div>
-                            <button type="button" onClick={() => approveWalletEntry(e.id)} className="inline-flex h-9 items-center justify-center rounded-[12px] bg-clay-600 px-4 text-sm font-medium text-cream transition-colors hover:bg-clay-700">Sign off</button>
+                            <button type="button" data-tour-id={`signoff-${e.id}`} onClick={() => approveWalletEntry(e.id)} className="inline-flex h-9 items-center justify-center rounded-[12px] bg-clay-600 px-4 text-sm font-medium text-cream transition-colors hover:bg-clay-700">Sign off</button>
                           </li>
                         ))}
                     </ul>

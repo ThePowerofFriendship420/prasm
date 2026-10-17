@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, HandCoins } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
@@ -17,6 +17,7 @@ import { DonorPortal } from "@/components/preview/DonorPortal";
 import { AuthScreen, type AuthRole } from "@/components/preview/AuthScreen";
 import { DemoBar } from "@/components/preview/DemoBar";
 import { Tour } from "@/components/preview/Tour";
+import { GiftStory } from "@/components/preview/GiftStory";
 import { Toaster } from "@/components/preview/Toaster";
 import { toast } from "@/components/preview/toast";
 import {
@@ -74,6 +75,7 @@ export function PreviewConsole() {
   const [activeLearner, setActiveLearner] = useState<StudentRecord | null>(
     null,
   );
+  const [storyOpen, setStoryOpen] = useState(false);
 
   const addMember = (m: Invite) =>
     setPeople((prev) => [
@@ -255,6 +257,15 @@ export function PreviewConsole() {
             <Logo />
             <Badge tone="gold">Demo</Badge>
             <div className="ml-auto flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => setStoryOpen(true)}
+                className="inline-flex items-center gap-1.5 rounded-full bg-clay-600 px-3 py-2 text-sm font-medium text-cream transition-colors hover:bg-clay-700"
+              >
+                <HandCoins className="h-4 w-4" aria-hidden />
+                <span className="hidden sm:inline">Follow a gift</span>
+                <span className="sm:hidden">Story</span>
+              </button>
               <ThemeToggle className="h-9 w-9 rounded-full text-stone hover:bg-sand" />
               <Link
                 href="/"
@@ -282,10 +293,19 @@ export function PreviewConsole() {
           onSignOut={signOut}
           onResetData={resetDemo}
           onReplayTour={resetTour}
+          onFollowGift={() => setStoryOpen(true)}
         />
       )}
       <Toaster />
       <Tour view={view} switchTo={switchTo} signOut={signOut} />
+      {storyOpen && (
+        <GiftStory
+          open
+          view={view}
+          switchTo={switchTo}
+          onClose={() => setStoryOpen(false)}
+        />
+      )}
     </>
   );
 }

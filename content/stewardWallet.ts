@@ -47,8 +47,23 @@ export const moneyOutCategories = [
   "Local travel",
   "Learning materials",
   "Snacks for the children",
+  "Medical care and transport",
   "Other",
 ] as const;
+
+/**
+ * The hospital trip the "Follow a gift" story follows from the steward's
+ * cashbook to the founder's sign-off. Demo only.
+ */
+export const GIFT_STORY_ENTRY: WalletEntry = {
+  id: "W-07",
+  direction: "out",
+  date: demoDate(0),
+  amount: 1200,
+  category: "Medical care and transport",
+  note: "Truck to the hospital and back with a boy and his mother.",
+  status: "logged",
+};
 
 /** Chronological. The view shows newest first. */
 export const stewardWalletSeed: WalletEntry[] = [
@@ -106,6 +121,7 @@ export const stewardWalletSeed: WalletEntry[] = [
     note: "Seeds, two small pots, and a picture book.",
     status: "logged",
   },
+  GIFT_STORY_ENTRY,
 ];
 
 export type WalletTotals = { inSum: number; outSum: number; balance: number };

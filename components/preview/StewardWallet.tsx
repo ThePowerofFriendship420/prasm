@@ -303,7 +303,11 @@ export function StewardWallet() {
             {entries.map((e) => {
               const isIn = e.direction === "in";
               return (
-                <li key={e.id} className={`flex gap-3 ${card} p-4`}>
+                <li
+                  key={e.id}
+                  data-tour-id={`wallet-${e.id}`}
+                  className={`flex gap-3 ${card} p-4`}
+                >
                   {e.receiptUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img

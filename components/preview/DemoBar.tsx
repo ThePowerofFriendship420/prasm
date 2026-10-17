@@ -39,12 +39,14 @@ export function DemoBar({
   onSignOut,
   onResetData,
   onReplayTour,
+  onFollowGift,
 }: {
   current: string;
   onSwitch: (target: string) => void;
   onSignOut: () => void;
   onResetData: () => void;
   onReplayTour?: () => void;
+  onFollowGift?: () => void;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -115,6 +117,22 @@ export function DemoBar({
               })}
             </div>
             <div className="border-t border-line p-1.5">
+              {onFollowGift && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    onFollowGift();
+                  }}
+                  className="flex w-full items-center gap-3 rounded-[12px] px-2.5 py-2 text-left text-sm text-forest-700 transition-colors hover:bg-sand/70"
+                >
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-clay-50 text-clay-600">
+                    <HandCoins className="h-4 w-4" aria-hidden />
+                  </span>
+                  <span className="flex-1 font-medium">Follow a gift</span>
+                  <span className="text-[0.6875rem] text-stone">story</span>
+                </button>
+              )}
               {onReplayTour && (
                 <button
                   type="button"
